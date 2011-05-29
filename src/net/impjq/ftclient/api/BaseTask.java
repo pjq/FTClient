@@ -35,6 +35,8 @@ public abstract class BaseTask implements Runnable {
 	protected String mCommand;
 
 	protected int mCommandId;
+	
+	protected String mResponse;
 
 	/**
 	 * Service type,twitter of facebook
@@ -72,6 +74,10 @@ public abstract class BaseTask implements Runnable {
 	protected String getMessage() {
 		return mMessage;
 	}
+	
+	public String getResponse(){
+		return mResponse;
+	}
 
 	private String createUrl() {
 		String url = "";
@@ -91,18 +97,6 @@ public abstract class BaseTask implements Runnable {
 	}
 
 	protected void execute() {
-
-	}
-
-	protected void updateStatus() {
-		HttpClient httpClient = createHttpClient();
-		HttpPost httpPost = new HttpPost(createUrl());
-
-		ArrayList<UrlEncodedFormEntity> parameters = new ArrayList<UrlEncodedFormEntity>();
-
-		// UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters);
-
-		// httpPost.setEntity(entity);
 
 	}
 

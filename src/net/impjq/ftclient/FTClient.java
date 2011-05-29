@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class FTClient extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
-	private static final String TAG = FTClient.class.getSimpleName();
+	public static final String TAG = FTClient.class.getSimpleName();
 
 	private Button mUpdateStatusButton;
 

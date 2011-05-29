@@ -35,9 +35,11 @@ public class UpdateStatus extends BaseTask {
 			String result = HttpClientHelper.getInstance().readFromInputStream(
 					inputStream);
 			Utils.log(TAG, "result=" + result);
-
+			mResponse=result;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			mResponse=e.getMessage();
 		}
 
 	}

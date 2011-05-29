@@ -17,6 +17,7 @@ public final class R {
         public static final int update_status_button=0x7f050000;
         public static final int update_status_input_edittext=0x7f050001;
         public static final int update_status_progressbar=0x7f050003;
+        public static final int update_status_response_textview=0x7f050004;
         public static final int update_status_update_button=0x7f050002;
     }
     public static final class layout {
@@ -26,6 +27,7 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f040001;
         public static final int hello=0x7f040000;
+        public static final int response=0x7f040004;
         public static final int update_status=0x7f040003;
         public static final int update_status_hint=0x7f040002;
     }

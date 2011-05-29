@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, FTClient!</string>
-    <string name="app_name">FTClient</string>
-    
-    <string name="update_status_hint">Please input your messages.</string>
-      <string name="update_status">UpdateStatus</string>
+	<string name="hello">Hello World, FTClient!</string>
+	<string name="app_name">FTClient</string>
+
+	<string name="update_status_hint">Please input your messages.</string>
+	<string name="update_status">UpdateStatus</string>
+	<string name="response">Response</string>
 </resources>

@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class UpdateStatusActivity extends BaseActivity implements
 		OnClickListener, TaskListener {
@@ -16,6 +17,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 	private EditText mUpdateStatusInputEditText;
 	private Button mUpdateStatusUpdateButton;
 	private ProgressBar mUpdateStatusProgressBar;
+	private TextView mUpdateStatusResponseTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 		mUpdateStatusInputEditText = (EditText) findViewById(R.id.update_status_input_edittext);
 		mUpdateStatusUpdateButton = (Button) findViewById(R.id.update_status_update_button);
 		mUpdateStatusProgressBar = (ProgressBar) findViewById(R.id.update_status_progressbar);
+		mUpdateStatusResponseTextView=(TextView)findViewById(R.id.update_status_response_textview);
 
 		mUpdateStatusUpdateButton.setOnClickListener(this);
 
@@ -80,6 +83,8 @@ public class UpdateStatusActivity extends BaseActivity implements
 		case BaseTask.TWITTER_API_UPDATE_MESSAGE:
 		case BaseTask.FACEBOOK_API_UPDATE_MESSAGE: {
 			mUpdateStatusProgressBar.setVisibility(View.INVISIBLE);
+			String response=baseTask.getResponse();
+			mUpdateStatusResponseTextView.append(response+'\n');
 			break;
 		}
 
