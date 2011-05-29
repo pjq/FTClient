@@ -22,7 +22,7 @@ import org.apache.http.protocol.HTTP;
 import net.impjq.httpclient.HttpClientHelper;
 
 public abstract class BaseTask implements Runnable {
-	protected String mServerURL = "http://192.168.1.20:8080/HelloServlet";
+	protected String mServerURL = "http://216.24.194.197:8090/HelloServlet";
 
 	// Twitter
 	public static final int TWITTER_API_UPDATE_MESSAGE = 10;
