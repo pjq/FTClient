@@ -45,10 +45,10 @@ public abstract class BaseTask implements Runnable {
 	protected String mPassword;
 	protected String mMessage;
 
-	public int getCommandId(){
+	public int getCommandId() {
 		return mCommandId;
 	}
-	
+
 	public void setUserName(String userName) {
 		mUserName = userName;
 	}
@@ -194,10 +194,9 @@ public abstract class BaseTask implements Runnable {
 	protected InputStream executeRequest(HashMap<String, String> hashMap,
 			boolean enableHttpEntity) {
 		HttpPost httpPost = createHttpPost();
-		if (enableHttpEntity) {
-			HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
-			httpPost.setEntity(httpEntity);
-		}
+
+		HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
+		httpPost.setEntity(httpEntity);
 
 		return executeHttpPost(httpPost);
 	}
