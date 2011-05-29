@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<EditText android:id="@+id/update_status_input_edittext"
+		android:layout_width="fill_parent" android:layout_height="100dip"
+		android:hint="@string/update_status_hint"></EditText>
+
+	<Button android:text="@string/update_status" android:id="@+id/update_status_update_button"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
+	<ProgressBar android:id="@+id/update_status_progressbar"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:visibility="invisible"></ProgressBar>
+</LinearLayout>
