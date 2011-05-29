@@ -1,5 +1,7 @@
 package net.impjq.ftclient;
 
+import java.util.Date;
+
 import android.util.Log;
 
 public class Utils {
@@ -9,6 +11,12 @@ public class Utils {
 		if (DEBUG_ENABLE) {
 			Log.i(TAG, msg);
 		}			
+	}
+	
+	public static String getTime(){
+		Date date=new Date();
+		String time=date.toLocaleString();
+		return time;
 	}
 
 }

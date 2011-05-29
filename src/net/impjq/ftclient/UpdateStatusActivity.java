@@ -85,6 +85,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 			mUpdateStatusProgressBar.setVisibility(View.INVISIBLE);
 			String response=baseTask.getResponse();
 			mUpdateStatusResponseTextView.append(response+'\n');
+			Utils.log(TAG, response);
 			break;
 		}
 
