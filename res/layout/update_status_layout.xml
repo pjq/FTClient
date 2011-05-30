@@ -5,7 +5,7 @@
 	<EditText android:id="@+id/update_status_server_input_edittext"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:singleLine="true" android:hint="@string/input_server"
-		android:text="http://216.24.194.197:8090/HelloServlet"></EditText>
+		android:text="http://216.24.194.197:1920/HelloServlet"></EditText>
 	<EditText android:id="@+id/update_status_input_edittext"
 		android:layout_width="fill_parent" android:layout_height="100dip"
 		android:hint="@string/update_status_hint"></EditText>

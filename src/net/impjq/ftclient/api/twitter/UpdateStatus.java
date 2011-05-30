@@ -15,7 +15,7 @@ public class UpdateStatus extends BaseTask {
 
 	public UpdateStatus() {
 		// TODO Auto-generated constructor stub
-		mServiceType = "twitter";
+		mServiceType = "s1";//Twitter
 		mCommand = "UpdateStatus";
 		mCommandId = TWITTER_API_UPDATE_MESSAGE;
 	}
