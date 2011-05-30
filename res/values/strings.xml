@@ -6,4 +6,5 @@
 	<string name="update_status_hint">Please input your messages.</string>
 	<string name="update_status">UpdateStatus</string>
 	<string name="response">Response</string>
+	<string name="input_server">Please input the server url</string>
 </resources>

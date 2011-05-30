@@ -1,3 +1,4 @@
+
 package net.impjq.ftclient.api;
 
 import java.io.IOException;
@@ -22,177 +23,180 @@ import org.apache.http.protocol.HTTP;
 import net.impjq.httpclient.HttpClientHelper;
 
 public abstract class BaseTask implements Runnable {
-	protected String mServerURL = "http://216.24.194.197:8090/HelloServlet";
+    static String mServerURL = "http://216.24.194.197:8090/HelloServlet";
 
-	// Twitter
-	public static final int TWITTER_API_UPDATE_MESSAGE = 10;
-	public static final int TWITTER_API_GET_TIMELINE = TWITTER_API_UPDATE_MESSAGE + 1;
+    // Twitter
+    public static final int TWITTER_API_UPDATE_MESSAGE = 10;
+    public static final int TWITTER_API_GET_TIMELINE = TWITTER_API_UPDATE_MESSAGE + 1;
 
-	// Facebook
-	public static final int FACEBOOK_API_UPDATE_MESSAGE = TWITTER_API_GET_TIMELINE + 10;
-	public static final int FACEBOOK_API_GET_TIMELINE = FACEBOOK_API_UPDATE_MESSAGE + 1;
+    // Facebook
+    public static final int FACEBOOK_API_UPDATE_MESSAGE = TWITTER_API_GET_TIMELINE + 10;
+    public static final int FACEBOOK_API_GET_TIMELINE = FACEBOOK_API_UPDATE_MESSAGE + 1;
 
-	protected String mCommand;
+    protected String mCommand;
 
-	protected int mCommandId;
-	
-	protected String mResponse;
+    protected int mCommandId;
 
-	/**
-	 * Service type,twitter of facebook
-	 */
-	protected String mServiceType;
+    protected String mResponse;
 
-	protected String mUserName;
-	protected String mPassword;
-	protected String mMessage;
+    /**
+     * Service type,twitter of facebook
+     */
+    protected String mServiceType;
 
-	public int getCommandId() {
-		return mCommandId;
-	}
+    protected String mUserName;
+    protected String mPassword;
+    protected String mMessage;
 
-	public void setUserName(String userName) {
-		mUserName = userName;
-	}
+    public static void setServerUrl(String url) {
+        mServerURL = url;
+    }
 
-	protected String getUserName() {
-		return mUserName;
-	}
+    public int getCommandId() {
+        return mCommandId;
+    }
 
-	public void setPassword(String password) {
-		mPassword = password;
-	}
+    public void setUserName(String userName) {
+        mUserName = userName;
+    }
 
-	protected String getPassword() {
-		return mPassword;
-	}
+    protected String getUserName() {
+        return mUserName;
+    }
 
-	public void setMessage(String message) {
-		mMessage = message;
-	}
+    public void setPassword(String password) {
+        mPassword = password;
+    }
 
-	protected String getMessage() {
-		return mMessage;
-	}
-	
-	public String getResponse(){
-		return mResponse;
-	}
+    protected String getPassword() {
+        return mPassword;
+    }
 
-	private String createUrl() {
-		String url = "";
+    public void setMessage(String message) {
+        mMessage = message;
+    }
 
-		url = mServerURL + "/" + mServiceType + "/" + mCommand;
+    protected String getMessage() {
+        return mMessage;
+    }
 
-		return url;
-	}
+    public String getResponse() {
+        return mResponse;
+    }
 
-	/**
-	 * Create the HttpClient,it support https and http.
-	 * 
-	 * @return
-	 */
-	private HttpClient createHttpClient() {
-		return HttpClientHelper.getInstance().createNewDefaultHttpClient();
-	}
+    private String createUrl() {
+        String url = "";
 
-	protected void execute() {
+        url = mServerURL + "/" + mServiceType + "/" + mCommand;
 
-	}
+        return url;
+    }
 
-	protected UrlEncodedFormEntity createUrlEncodedFormEntity(
-			HashMap<String, String> hashMap) {
-		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-		Iterator<Entry<String, String>> iterator = hashMap.entrySet()
-				.iterator();
+    /**
+     * Create the HttpClient,it support https and http.
+     * 
+     * @return
+     */
+    private HttpClient createHttpClient() {
+        return HttpClientHelper.getInstance().createNewDefaultHttpClient();
+    }
 
-		while (iterator.hasNext()) {
-			Entry<String, String> entry = iterator.next();
-			String key = entry.getKey();
-			String value = entry.getValue();
-			formparams.add(new BasicNameValuePair(key, value));
-		}
+    protected void execute() {
 
-		UrlEncodedFormEntity urlEncodedFormEntity = null;
-		try {
-			urlEncodedFormEntity = new UrlEncodedFormEntity(formparams,
-					HTTP.UTF_8);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    }
 
-		return urlEncodedFormEntity;
-	}
+    protected UrlEncodedFormEntity createUrlEncodedFormEntity(
+            HashMap<String, String> hashMap) {
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        Iterator<Entry<String, String>> iterator = hashMap.entrySet()
+                .iterator();
 
-	/**
-	 * Create the HttpClient.
-	 * 
-	 * @return
-	 */
-	// protected HttpClient createHttpClient() {
-	// HttpClientHelper helper = HttpClientHelper.getInstance();
-	// HttpClient httpClient = helper.createNewDefaultHttpClient();
-	// return httpClient;
-	// }
+        while (iterator.hasNext()) {
+            Entry<String, String> entry = iterator.next();
+            String key = entry.getKey();
+            String value = entry.getValue();
+            formparams.add(new BasicNameValuePair(key, value));
+        }
 
-	/**
-	 * Create the HttpPost
-	 * 
-	 * @return
-	 */
-	protected HttpPost createHttpPost() {
+        UrlEncodedFormEntity urlEncodedFormEntity = null;
+        try {
+            urlEncodedFormEntity = new UrlEncodedFormEntity(formparams,
+                    HTTP.UTF_8);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-		HttpPost httpPost = null;
+        return urlEncodedFormEntity;
+    }
 
-		httpPost = new HttpPost(createUrl());
-		httpPost.addHeader("Accept", "text/plain");
-		httpPost.addHeader("Accept-Charset", "UTF-8,*;q=0.5");
+    /**
+     * Create the HttpClient.
+     * 
+     * @return
+     */
+    // protected HttpClient createHttpClient() {
+    // HttpClientHelper helper = HttpClientHelper.getInstance();
+    // HttpClient httpClient = helper.createNewDefaultHttpClient();
+    // return httpClient;
+    // }
 
-		return httpPost;
-	}
+    /**
+     * Create the HttpPost
+     * 
+     * @return
+     */
+    protected HttpPost createHttpPost() {
 
-	/**
-	 * Execute the HttpPost.
-	 * 
-	 * @param httpPost
-	 * @return InputStream
-	 */
-	protected InputStream executeHttpPost(HttpPost httpPost) {
-		InputStream inputStream = null;
-		try {
-			HttpResponse response;
-			response = createHttpClient().execute(httpPost);
-			System.out.println(response.getStatusLine());
-			inputStream = response.getEntity().getContent();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return inputStream;
-	}
+        HttpPost httpPost = null;
 
-	/**
-	 * Execute the request just according to the HashMap parameters. Some
-	 * request doesn't need to setEntity,such as {@link SignOutTask},
-	 * {@link KeepAliveTask},so you may can't use it,so pass false to it.
-	 * 
-	 * @param hashMap
-	 * @param enableHttpEntity
-	 *            if need the HttpEntity,set to true.
-	 * @return InputStream
-	 */
-	protected InputStream executeRequest(HashMap<String, String> hashMap,
-			boolean enableHttpEntity) {
-		HttpPost httpPost = createHttpPost();
+        httpPost = new HttpPost(createUrl());
+        httpPost.addHeader("Accept", "text/plain");
+        httpPost.addHeader("Accept-Charset", "UTF-8,*;q=0.5");
 
-		HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
-		httpPost.setEntity(httpEntity);
+        return httpPost;
+    }
 
-		return executeHttpPost(httpPost);
-	}
+    /**
+     * Execute the HttpPost.
+     * 
+     * @param httpPost
+     * @return InputStream
+     */
+    protected InputStream executeHttpPost(HttpPost httpPost) {
+        InputStream inputStream = null;
+        try {
+            HttpResponse response;
+            response = createHttpClient().execute(httpPost);
+            System.out.println(response.getStatusLine());
+            inputStream = response.getEntity().getContent();
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
+
+    /**
+     * Execute the request just according to the HashMap parameters. Some
+     * request doesn't need to setEntity,such as {@link SignOutTask},
+     * {@link KeepAliveTask},so you may can't use it,so pass false to it.
+     * 
+     * @param hashMap
+     * @param enableHttpEntity if need the HttpEntity,set to true.
+     * @return InputStream
+     */
+    protected InputStream executeRequest(HashMap<String, String> hashMap,
+            boolean enableHttpEntity) {
+        HttpPost httpPost = createHttpPost();
+
+        HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
+        httpPost.setEntity(httpEntity);
+
+        return executeHttpPost(httpPost);
+    }
 
 }
