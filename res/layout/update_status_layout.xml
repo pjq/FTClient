@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
-
+	android:orientation="vertical" android:scrollbars="vertical">
 	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<EditText android:id="@+id/update_status_username_input_edittext"
-			android:layout_width="0dip" android:layout_height="wrap_content"
-			android:singleLine="true" android:hint="@string/input_username"
-			android:layout_weight="1"></EditText>
-		<EditText android:id="@+id/update_status_password_input_edittext"
-			android:layout_width="0dip" android:layout_height="wrap_content"
-			android:singleLine="true" android:hint="@string/input_password"
-			android:layout_weight="1" android:inputType="textPassword"></EditText>
+		android:layout_height="fill_parent" android:orientation="vertical">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<EditText android:id="@+id/update_status_username_input_edittext"
+				android:layout_width="0dip" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="@string/input_username"
+				android:layout_weight="1"></EditText>
+			<EditText android:id="@+id/update_status_password_input_edittext"
+				android:layout_width="0dip" android:layout_height="wrap_content"
+				android:singleLine="true" android:hint="@string/input_password"
+				android:layout_weight="1" android:inputType="textPassword"></EditText>
+		</LinearLayout>
+
+		<EditText android:id="@+id/update_status_server_input_edittext"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:singleLine="true" android:hint="@string/input_server"
+			android:text="@string/default_server_url"></EditText>
+		<EditText android:id="@+id/update_status_input_edittext"
+			android:layout_width="fill_parent" android:layout_height="100dip"
+			android:hint="@string/update_status_hint"></EditText>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<Button android:text="@string/update_status" android:id="@+id/update_status_update_button"
+				android:layout_width="0dip" android:layout_height="wrap_content"
+				android:layout_weight="1.0"></Button>
+			<ProgressBar android:id="@+id/update_status_progressbar"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:visibility="gone" android:layout_gravity="right"></ProgressBar>
+
+		</LinearLayout>
+		<TextView android:text="@string/response"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></TextView>
+
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:scrollbars="vertical">
+			<TextView android:id="@+id/update_status_response_textview"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
+		</ScrollView>
 	</LinearLayout>
-
-	<EditText android:id="@+id/update_status_server_input_edittext"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:singleLine="true" android:hint="@string/input_server"
-		android:text="@string/default_server_url"></EditText>
-	<EditText android:id="@+id/update_status_input_edittext"
-		android:layout_width="fill_parent" android:layout_height="100dip"
-		android:hint="@string/update_status_hint"></EditText>
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<Button android:text="@string/update_status" android:id="@+id/update_status_update_button"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-		<ProgressBar android:id="@+id/update_status_progressbar"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:visibility="invisible" android:layout_gravity="right"></ProgressBar>
-
-	</LinearLayout>
-	<TextView android:text="@string/response"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"></TextView>
-
-	<ScrollView android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:scrollbars="vertical">
-		<TextView android:id="@+id/update_status_response_textview"
-			android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
-	</ScrollView>
-
-</LinearLayout>
+</ScrollView>

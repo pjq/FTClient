@@ -113,7 +113,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 		switch (commandId) {
 		case BaseTask.TWITTER_API_UPDATE_MESSAGE:
 		case BaseTask.FACEBOOK_API_UPDATE_MESSAGE: {
-			mUpdateStatusProgressBar.setVisibility(View.INVISIBLE);
+			mUpdateStatusProgressBar.setVisibility(View.GONE);
 			String response = baseTask.getResponse();
 			mUpdateStatusResponseTextView.append(response + '\n');
 			Utils.log(TAG, response);
