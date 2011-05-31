@@ -21,6 +21,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 	private TextView mUpdateStatusResponseTextView;
 	private EditText mUserNameInputEditText;
 	private EditText mPasswordInputEditText;
+	private Button mClearResponseButton;
 
 	private FTPreference mFTPreference;
 	private String mUserName;
@@ -48,8 +49,10 @@ public class UpdateStatusActivity extends BaseActivity implements
 		mUpdateStatusResponseTextView = (TextView) findViewById(R.id.update_status_response_textview);
 		mUserNameInputEditText = (EditText) findViewById(R.id.update_status_username_input_edittext);
 		mPasswordInputEditText = (EditText) findViewById(R.id.update_status_password_input_edittext);
+		mClearResponseButton = (Button) findViewById(R.id.update_status_clear_response_button);
 
 		mUpdateStatusUpdateButton.setOnClickListener(this);
+		mClearResponseButton.setOnClickListener(this);
 
 		mUserNameInputEditText.setText(mFTPreference.getUserName());
 		mPasswordInputEditText.setText(mFTPreference.getPassword());
@@ -85,6 +88,11 @@ public class UpdateStatusActivity extends BaseActivity implements
 			 */
 			mFTPreference.storeAll(mUserName, mPassword, mServerUrl);
 
+			break;
+		}
+
+		case R.id.update_status_clear_response_button: {
+			mUpdateStatusResponseTextView.setText("");
 			break;
 		}
 
