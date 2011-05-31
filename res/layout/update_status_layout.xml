@@ -12,7 +12,7 @@
 		<EditText android:id="@+id/update_status_password_input_edittext"
 			android:layout_width="0dip" android:layout_height="wrap_content"
 			android:singleLine="true" android:hint="@string/input_password"
-			android:layout_weight="1"></EditText>
+			android:layout_weight="1" android:inputType="textPassword"></EditText>
 	</LinearLayout>
 
 	<EditText android:id="@+id/update_status_server_input_edittext"
