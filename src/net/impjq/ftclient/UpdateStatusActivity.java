@@ -4,6 +4,7 @@ package net.impjq.ftclient;
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,6 +21,8 @@ public class UpdateStatusActivity extends BaseActivity implements
     private Button mUpdateStatusUpdateButton;
     private ProgressBar mUpdateStatusProgressBar;
     private TextView mUpdateStatusResponseTextView;
+    private EditText mUserNameInputEditText;
+    private EditText mPasswordInputEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class UpdateStatusActivity extends BaseActivity implements
         mUpdateStatusUpdateButton = (Button) findViewById(R.id.update_status_update_button);
         mUpdateStatusProgressBar = (ProgressBar) findViewById(R.id.update_status_progressbar);
         mUpdateStatusResponseTextView = (TextView) findViewById(R.id.update_status_response_textview);
+        mUserNameInputEditText = (EditText) findViewById(R.id.update_status_username_input_edittext);
+        mPasswordInputEditText = (EditText) findViewById(R.id.update_status_password_input_edittext);
 
         mUpdateStatusUpdateButton.setOnClickListener(this);
 
@@ -51,10 +56,11 @@ public class UpdateStatusActivity extends BaseActivity implements
 
         switch (id) {
             case R.id.update_status_update_button: {
+                hideSoftKeyboard();
                 String message = mUpdateStatusInputEditText.getText().toString();
-                String userName = "pjq";
-                String password = "123";
-                String server=mServerInputEditText.getText().toString();
+                String userName = mUserNameInputEditText.getText().toString();
+                String password = mPasswordInputEditText.getText().toString();
+                String server = mServerInputEditText.getText().toString();
                 BaseTask.setServerUrl(server);
 
                 updateStatus(userName, password, message);

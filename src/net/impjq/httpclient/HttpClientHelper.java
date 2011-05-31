@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -188,7 +189,12 @@ public class HttpClientHelper {
 	public String readFromInputStream(InputStream is) {
 		String result = "";
 
-		result = readFromInputStream(new InputStreamReader(is));
+		try {
+            result = readFromInputStream(new InputStreamReader(is,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 		return result;
 	}

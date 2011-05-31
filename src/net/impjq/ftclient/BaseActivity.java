@@ -5,6 +5,10 @@ import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 public class BaseActivity extends Activity {
 
@@ -20,5 +24,29 @@ public class BaseActivity extends Activity {
 
 		asyncTask.execute("");
 	}
+	
+    public void showSoftKeyboard(EditText editText) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editText, 0);
+    }
+    
+    protected void hideSoftKeyboard() {
+        InputMethodManager inputMethodManager = ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE));
+        View view = getCurrentFocus();
+        // view = getWindow().getDecorView();
+        if (null == view) {
+            view = getWindow().getDecorView();
+        }
 
+        if (null == view) {
+            return;
+        }
+
+        IBinder token = view.getWindowToken();
+        if (null == token) {
+            return;
+        }
+
+        inputMethodManager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 }

@@ -20,10 +20,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
+import net.impjq.ftclient.Utils;
 import net.impjq.httpclient.HttpClientHelper;
 
 public abstract class BaseTask implements Runnable {
-    static String mServerURL = "http://216.24.194.197:8090/HelloServlet";
+    public static final String TAG=BaseTask.class.getSimpleName();
+    static String mServerURL = "http://216.24.194.197:1985/HelloServlet";
 
     // Twitter
     public static final int TWITTER_API_UPDATE_MESSAGE = 10;
@@ -89,6 +91,7 @@ public abstract class BaseTask implements Runnable {
 
         url = mServerURL + "/" + mServiceType + "/" + mCommand;
 
+        Utils.log(TAG, "url="+url);
         return url;
     }
 
