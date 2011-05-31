@@ -3,6 +3,8 @@ package net.impjq.ftclient;
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -62,6 +64,40 @@ public class UpdateStatusActivity extends BaseActivity implements
 			mServerInputEditText.setText(serverUrl);
 		}
 
+		mUpdateStatusResponseTextView.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+
+				setClearButtonVisible();
+
+			}
+		});
+		setClearButtonVisible();
+	}
+
+	private void setClearButtonVisible() {
+		String text = mUpdateStatusResponseTextView.getText().toString();
+		if (Utils.isEmpty(text)) {
+			mClearResponseButton.setVisibility(View.GONE);
+		} else {
+			mClearResponseButton.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
