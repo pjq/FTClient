@@ -139,7 +139,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 			mUpdateStatusResponseTextView
 					.setText(getString(R.string.get_user_timeline));
 			hideSoftKeyboard();
-			//String message = mUpdateStatusInputEditText.getText().toString();
+			// String message = mUpdateStatusInputEditText.getText().toString();
 			mUserName = mUserNameInputEditText.getText().toString();
 			mPassword = mPasswordInputEditText.getText().toString();
 			mServerUrl = mServerInputEditText.getText().toString();
@@ -169,7 +169,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 		net.impjq.ftclient.api.twitter.GetUserTimeline getUserTimeline = new net.impjq.ftclient.api.twitter.GetUserTimeline();
 		getUserTimeline.setUserName(userName);
 		getUserTimeline.setPassword(password);
-		
+
 		runBaseTask(getUserTimeline, this);
 	}
 
@@ -218,7 +218,8 @@ public class UpdateStatusActivity extends BaseActivity implements
 
 		switch (commandId) {
 		case BaseTask.TWITTER_API_UPDATE_MESSAGE:
-		case BaseTask.FACEBOOK_API_UPDATE_MESSAGE: {
+		case BaseTask.FACEBOOK_API_UPDATE_MESSAGE:
+		case BaseTask.TWITTER_API_GET_USER_TIMELINE: {
 			mUpdateStatusProgressBar.setVisibility(View.VISIBLE);
 			break;
 		}
@@ -228,5 +229,4 @@ public class UpdateStatusActivity extends BaseActivity implements
 		}
 
 	}
-
 }
