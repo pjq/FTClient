@@ -10,14 +10,14 @@ import net.impjq.ftclient.Utils;
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.httpclient.HttpClientHelper;
 
-public class UpdateStatus extends BaseTask {
-	private static final String TAG = UpdateStatus.class.getSimpleName();
+public class GetUserTimeline extends BaseTask {
+	private static final String TAG = GetUserTimeline.class.getSimpleName();
 
-	public UpdateStatus() {
+	public GetUserTimeline() {
 		// TODO Auto-generated constructor stub
-		mServiceType = SERVICE_TYPE_TWITTER;//Twitter
-		mCommand = "UpdateStatus";
-		mCommandId = TWITTER_API_UPDATE_MESSAGE;
+		mServiceType = SERVICE_TYPE_TWITTER;// Twitter
+		mCommand = "GetUserTimeline";
+		mCommandId = TWITTER_API_GET_USER_TIMELINE;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class UpdateStatus extends BaseTask {
 		hashMap.put(CommonParamString.PARAM_MACHINE, Build.MODEL);
 		hashMap.put(CommonParamString.PARAM_USERNAME, getUserName());
 		hashMap.put(CommonParamString.PARAM_PASSWORD, getPassword());
-		hashMap.put(CommonParamString.PARAM_MESSAGE, getMessage());
+		// hashMap.put(CommonParamString.PARAM_MESSAGE, getMessage());
 		hashMap.put(CommonParamString.PARAM_TIME, Utils.getTime());
 		try {
 			InputStream inputStream = executeRequest(hashMap, true);
@@ -36,12 +36,12 @@ public class UpdateStatus extends BaseTask {
 			String result = HttpClientHelper.getInstance().readFromInputStream(
 					inputStream);
 			Utils.log(TAG, "result=" + result);
-			mResponse=result;
+			mResponse = result;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			mResponse=e.getMessage();
-		}		
+			mResponse = e.getMessage();
+		}
 
 	}
 

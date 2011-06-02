@@ -14,6 +14,7 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
+        public static final int get_user_timeline_button=0x7f050009;
         public static final int update_status_button=0x7f050000;
         public static final int update_status_clear_response_button=0x7f050007;
         public static final int update_status_input_edittext=0x7f050004;
@@ -32,6 +33,7 @@ public final class R {
         public static final int app_name=0x7f040001;
         public static final int clear_response=0x7f040009;
         public static final int default_server_url=0x7f040008;
+        public static final int get_user_timeline=0x7f04000a;
         public static final int hello=0x7f040000;
         public static final int input_password=0x7f040007;
         public static final int input_server=0x7f040005;

@@ -11,4 +11,5 @@
 	<string name="input_password">Password</string>
 	<string name="default_server_url">https://216.24.194.197:8443/HelloServlet</string>
 	<string name="clear_response">Clear</string>
+	<string name="get_user_timeline">GetUserTimeline</string>
 </resources>

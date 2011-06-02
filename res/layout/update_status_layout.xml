@@ -45,5 +45,9 @@
 				android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
 
 		</ScrollView>
+
+		<Button android:text="@string/get_user_timeline" android:id="@+id/get_user_timeline_button"
+			android:layout_width="wrap_content" android:layout_height="fill_parent"
+			android:layout_gravity="right"></Button>
 	</LinearLayout>
 </ScrollView>

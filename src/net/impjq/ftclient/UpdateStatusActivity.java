@@ -24,6 +24,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 	private EditText mUserNameInputEditText;
 	private EditText mPasswordInputEditText;
 	private Button mClearResponseButton;
+	private Button mGetUserTimelineButton;
 
 	private FTPreference mFTPreference;
 	private String mUserName;
@@ -52,9 +53,11 @@ public class UpdateStatusActivity extends BaseActivity implements
 		mUserNameInputEditText = (EditText) findViewById(R.id.update_status_username_input_edittext);
 		mPasswordInputEditText = (EditText) findViewById(R.id.update_status_password_input_edittext);
 		mClearResponseButton = (Button) findViewById(R.id.update_status_clear_response_button);
+		mGetUserTimelineButton = (Button) findViewById(R.id.get_user_timeline_button);
 
 		mUpdateStatusUpdateButton.setOnClickListener(this);
 		mClearResponseButton.setOnClickListener(this);
+		mGetUserTimelineButton.setOnClickListener(this);
 
 		mUserNameInputEditText.setText(mFTPreference.getUserName());
 		mPasswordInputEditText.setText(mFTPreference.getPassword());
@@ -132,6 +135,12 @@ public class UpdateStatusActivity extends BaseActivity implements
 			break;
 		}
 
+		case R.id.get_user_timeline_button: {
+			mUpdateStatusResponseTextView
+					.setText(getString(R.string.get_user_timeline));
+			break;
+		}
+
 		default:
 			break;
 		}
@@ -157,6 +166,14 @@ public class UpdateStatusActivity extends BaseActivity implements
 		switch (commandId) {
 		case BaseTask.TWITTER_API_UPDATE_MESSAGE:
 		case BaseTask.FACEBOOK_API_UPDATE_MESSAGE: {
+			mUpdateStatusProgressBar.setVisibility(View.GONE);
+			String response = baseTask.getResponse();
+			mUpdateStatusResponseTextView.append(response + '\n');
+			Utils.log(TAG, response);
+			break;
+		}
+
+		case BaseTask.TWITTER_API_GET_USER_TIMELINE: {
 			mUpdateStatusProgressBar.setVisibility(View.GONE);
 			String response = baseTask.getResponse();
 			mUpdateStatusResponseTextView.append(response + '\n');
