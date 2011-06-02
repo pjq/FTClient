@@ -138,6 +138,15 @@ public class UpdateStatusActivity extends BaseActivity implements
 		case R.id.get_user_timeline_button: {
 			mUpdateStatusResponseTextView
 					.setText(getString(R.string.get_user_timeline));
+			hideSoftKeyboard();
+			//String message = mUpdateStatusInputEditText.getText().toString();
+			mUserName = mUserNameInputEditText.getText().toString();
+			mPassword = mPasswordInputEditText.getText().toString();
+			mServerUrl = mServerInputEditText.getText().toString();
+			BaseTask.setServerUrl(mServerUrl);
+
+			getUserTimeline(mUserName, mPassword);
+
 			break;
 		}
 
@@ -154,6 +163,14 @@ public class UpdateStatusActivity extends BaseActivity implements
 		updateStatus.setMessage(message);
 
 		runBaseTask(updateStatus, this);
+	}
+
+	private void getUserTimeline(String userName, String password) {
+		net.impjq.ftclient.api.twitter.GetUserTimeline getUserTimeline = new net.impjq.ftclient.api.twitter.GetUserTimeline();
+		getUserTimeline.setUserName(userName);
+		getUserTimeline.setPassword(password);
+		
+		runBaseTask(getUserTimeline, this);
 	}
 
 	@Override
