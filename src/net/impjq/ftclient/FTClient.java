@@ -19,6 +19,10 @@ public class FTClient extends Activity implements OnClickListener {
 		setContentView(R.layout.main);
 		
 		init();
+		Intent intent = new Intent();
+        intent.setClass(this, UpdateStatusActivity.class);
+        startActivity(intent);
+        finish();
 	}
 
 	void init() {
