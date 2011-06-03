@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="FTClienttheme" parent="android:Theme">
+		<item name="android:windowBackground">@color/white</item>
+	</style>
+	<style name="ResponseTextViewStyle">
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+</resources>

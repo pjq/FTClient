@@ -24,6 +24,7 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
+        setTheme(R.style.FTClienttheme);
         super.onCreate(savedInstanceState);
     }
 
