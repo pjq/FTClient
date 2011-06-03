@@ -51,10 +51,9 @@
 			android:layout_weight="1.0">
 			<TextView android:id="@+id/update_status_response_textview"
 				android:layout_width="fill_parent" android:layout_height="fill_parent"
-				style="@style/ResponseTextViewStyle"></TextView>
-
+				style="@style/ResponseTextViewStyle" android:autoLink="all"
+				android:linksClickable="true"></TextView>
 		</ScrollView>
-
 
 	</LinearLayout>
 </ScrollView>
