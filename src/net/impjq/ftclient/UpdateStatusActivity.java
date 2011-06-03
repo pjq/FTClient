@@ -102,9 +102,9 @@ public class UpdateStatusActivity extends BaseActivity implements
         });
         setClearButtonVisible();
 
-        //mUpdateStatusInputEditText.setOnTouchListener(this);
-        //mUpdateStatusInputEditText.setLongClickable(true);
-        //mGestureDetector = new GestureDetector(this);
+        // mUpdateStatusInputEditText.setOnTouchListener(this);
+        // mUpdateStatusInputEditText.setLongClickable(true);
+        // mGestureDetector = new GestureDetector(this);
     }
 
     private void setClearButtonVisible() {
@@ -199,7 +199,7 @@ public class UpdateStatusActivity extends BaseActivity implements
             case BaseTask.FACEBOOK_API_UPDATE_MESSAGE: {
                 mUpdateStatusProgressBar.setVisibility(View.GONE);
                 String response = baseTask.getResponse();
-                mUpdateStatusResponseTextView.append(response + '\n');
+                addResposeTextViewText(response);
                 Utils.log(TAG, response);
                 break;
             }
@@ -207,7 +207,7 @@ public class UpdateStatusActivity extends BaseActivity implements
             case BaseTask.TWITTER_API_GET_USER_TIMELINE: {
                 mUpdateStatusProgressBar.setVisibility(View.GONE);
                 String response = baseTask.getResponse();
-                mUpdateStatusResponseTextView.append(response + '\n');
+                addResposeTextViewText(response);
                 Utils.log(TAG, response);
                 break;
             }
@@ -215,6 +215,11 @@ public class UpdateStatusActivity extends BaseActivity implements
             default:
                 break;
         }
+    }
+
+    private void addResposeTextViewText(String response) {
+        String text = response + '\n' + mUpdateStatusResponseTextView.getText();
+        mUpdateStatusResponseTextView.setText(text + '\n');
     }
 
     @Override
@@ -278,14 +283,14 @@ public class UpdateStatusActivity extends BaseActivity implements
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         // TODO Auto-generated method stub
-        //showToast("onTouch");
+        // showToast("onTouch");
         return mGestureDetector.onTouchEvent(event);
     }
 
     @Override
     public boolean onDown(MotionEvent e) {
         // TODO Auto-generated method stub
-        //showToast("onDown");
+        // showToast("onDown");
         return false;
     }
 
