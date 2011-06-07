@@ -3,6 +3,9 @@ package net.impjq.ftclient;
 
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
+import net.impjq.photo.CapturePhoto;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -160,6 +163,11 @@ public class UpdateStatusActivity extends BaseActivity implements
                 BaseTask.setServerUrl(mServerUrl);
 
                 getUserTimeline(mUserName, mPassword);
+
+                // Test code,start the CapturePhoto Activity.
+                Intent intent=new Intent();
+                intent.setClass(this, CapturePhoto.class);
+                startActivity(intent);
 
                 break;
             }

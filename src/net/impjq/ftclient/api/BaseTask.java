@@ -1,3 +1,4 @@
+
 package net.impjq.ftclient.api;
 
 import java.io.IOException;
@@ -23,186 +24,204 @@ import net.impjq.ftclient.Utils;
 import net.impjq.httpclient.HttpClientHelper;
 
 public abstract class BaseTask implements Runnable {
-	public static final String TAG = BaseTask.class.getSimpleName();
-	static String mServerURL = "http://216.24.194.197:1985/HelloServlet";
+    public static final String TAG = BaseTask.class.getSimpleName();
+    static String mServerURL = "http://216.24.194.197:1985/HelloServlet";
 
-	public static final String SERVICE_TYPE_TWITTER = "s1";
-	public static final String SERVICE_TYPE_FACEBOOK = "s2";
+    public static final String SERVICE_TYPE_TWITTER = "s1";
+    public static final String SERVICE_TYPE_FACEBOOK = "s2";
+    public static final String SERVICE_TYPE_UPLOAD_PHOTO = "s3";
 
-	// Twitter
-	public static final int TWITTER_API_UPDATE_MESSAGE = 10;
-	public static final int TWITTER_API_GET_USER_TIMELINE = TWITTER_API_UPDATE_MESSAGE + 1;
+    // Twitter
+    public static final int TWITTER_API_UPDATE_MESSAGE = 10;
+    public static final int TWITTER_API_GET_USER_TIMELINE = TWITTER_API_UPDATE_MESSAGE + 1;
 
-	// Facebook
-	public static final int FACEBOOK_API_UPDATE_MESSAGE = TWITTER_API_GET_USER_TIMELINE + 10;
-	public static final int FACEBOOK_API_GET_TIMELINE = FACEBOOK_API_UPDATE_MESSAGE + 1;
+    // Facebook
+    public static final int FACEBOOK_API_UPDATE_MESSAGE = TWITTER_API_GET_USER_TIMELINE + 10;
+    public static final int FACEBOOK_API_GET_TIMELINE = FACEBOOK_API_UPDATE_MESSAGE + 1;
 
-	protected String mCommand;
+    // PhotoUpload
+    public static final int PHOTO_UPLOAD_PHOTO = FACEBOOK_API_GET_TIMELINE + 1;
 
-	protected int mCommandId;
+    protected String mCommand;
 
-	protected String mResponse;
+    protected int mCommandId;
 
-	/**
-	 * Service type,twitter of facebook
-	 */
-	protected String mServiceType;
+    protected String mResponse;
 
-	protected String mUserName;
-	protected String mPassword;
-	protected String mMessage;
+    /**
+     * Service type,twitter of facebook
+     */
+    protected String mServiceType;
 
-	public static void setServerUrl(String url) {
-		mServerURL = url;
-	}
+    protected String mUserName;
+    protected String mPassword;
+    protected String mMessage;
 
-	public int getCommandId() {
-		return mCommandId;
-	}
+    public static void setServerUrl(String url) {
+        mServerURL = url;
+    }
 
-	public void setUserName(String userName) {
-		mUserName = userName;
-	}
+    public int getCommandId() {
+        return mCommandId;
+    }
 
-	protected String getUserName() {
-		return mUserName;
-	}
+    public void setUserName(String userName) {
+        mUserName = userName;
+    }
 
-	public void setPassword(String password) {
-		mPassword = password;
-	}
+    protected String getUserName() {
+        return mUserName;
+    }
 
-	protected String getPassword() {
-		return mPassword;
-	}
+    public void setPassword(String password) {
+        mPassword = password;
+    }
 
-	public void setMessage(String message) {
-		mMessage = message;
-	}
+    protected String getPassword() {
+        return mPassword;
+    }
 
-	protected String getMessage() {
-		return mMessage;
-	}
+    public void setMessage(String message) {
+        mMessage = message;
+    }
 
-	public String getResponse() {
-		return mResponse;
-	}
+    protected String getMessage() {
+        return mMessage;
+    }
 
-	private String createUrl() {
-		String url = "";
+    public String getResponse() {
+        return mResponse;
+    }
 
-		url = mServerURL + "/" + mServiceType + "/" + mCommand;
+    private String createUrl() {
+        String url = "";
 
-		Utils.log(TAG, "url=" + url);
-		return url;
-	}
+        url = mServerURL + "/" + mServiceType + "/" + mCommand;
 
-	/**
-	 * Create the HttpClient,it support https and http.
-	 * 
-	 * @return
-	 */
-	private HttpClient createHttpClient() {
-		return HttpClientHelper.getInstance().createNewDefaultHttpClient();
-	}
+        Utils.log(TAG, "url=" + url);
+        return url;
+    }
 
-	protected void execute() {
+    /**
+     * Create the HttpClient,it support https and http.
+     * 
+     * @return
+     */
+    public HttpClient createHttpClient() {
+        return HttpClientHelper.getInstance().createNewDefaultHttpClient();
+    }
 
-	}
+    protected void execute() {
 
-	protected UrlEncodedFormEntity createUrlEncodedFormEntity(
-			HashMap<String, String> hashMap) {
-		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-		Iterator<Entry<String, String>> iterator = hashMap.entrySet()
-				.iterator();
+    }
 
-		while (iterator.hasNext()) {
-			Entry<String, String> entry = iterator.next();
-			String key = entry.getKey();
-			String value = entry.getValue();
-			formparams.add(new BasicNameValuePair(key, value));
-		}
+    protected UrlEncodedFormEntity createUrlEncodedFormEntity(
+            HashMap<String, String> hashMap) {
+        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        Iterator<Entry<String, String>> iterator = hashMap.entrySet()
+                .iterator();
 
-		UrlEncodedFormEntity urlEncodedFormEntity = null;
-		try {
-			urlEncodedFormEntity = new UrlEncodedFormEntity(formparams,
-					HTTP.UTF_8);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        while (iterator.hasNext()) {
+            Entry<String, String> entry = iterator.next();
+            String key = entry.getKey();
+            String value = entry.getValue();
+            formparams.add(new BasicNameValuePair(key, value));
+        }
 
-		return urlEncodedFormEntity;
-	}
+        UrlEncodedFormEntity urlEncodedFormEntity = null;
+        try {
+            urlEncodedFormEntity = new UrlEncodedFormEntity(formparams,
+                    HTTP.UTF_8);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-	/**
-	 * Create the HttpClient.
-	 * 
-	 * @return
-	 */
-	// protected HttpClient createHttpClient() {
-	// HttpClientHelper helper = HttpClientHelper.getInstance();
-	// HttpClient httpClient = helper.createNewDefaultHttpClient();
-	// return httpClient;
-	// }
+        return urlEncodedFormEntity;
+    }
 
-	/**
-	 * Create the HttpPost
-	 * 
-	 * @return
-	 */
-	protected HttpPost createHttpPost() {
+    /**
+     * Create the HttpClient.
+     * 
+     * @return
+     */
+    // protected HttpClient createHttpClient() {
+    // HttpClientHelper helper = HttpClientHelper.getInstance();
+    // HttpClient httpClient = helper.createNewDefaultHttpClient();
+    // return httpClient;
+    // }
 
-		HttpPost httpPost = null;
+    /**
+     * Create the HttpPost
+     * 
+     * @return
+     */
+    protected HttpPost createHttpPost() {
 
-		httpPost = new HttpPost(createUrl());
-		httpPost.addHeader("Accept", "text/plain");
-		httpPost.addHeader("Accept-Charset", "UTF-8,*;q=0.5");
+        HttpPost httpPost = null;
 
-		return httpPost;
-	}
+        httpPost = new HttpPost(createUrl());
+        httpPost.addHeader("Accept", "text/plain");
+        httpPost.addHeader("Accept-Charset", "UTF-8,*;q=0.5");
 
-	/**
-	 * Execute the HttpPost.
-	 * 
-	 * @param httpPost
-	 * @return InputStream
-	 */
-	protected InputStream executeHttpPost(HttpPost httpPost) {
-		InputStream inputStream = null;
-		try {
-			HttpResponse response;
-			response = createHttpClient().execute(httpPost);
-			System.out.println(response.getStatusLine());
-			inputStream = response.getEntity().getContent();
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return inputStream;
-	}
+        return httpPost;
+    }
 
-	/**
-	 * Execute the request just according to the HashMap parameters. Some
-	 * request doesn't need to setEntity,such as {@link SignOutTask},
-	 * {@link KeepAliveTask},so you may can't use it,so pass false to it.
-	 * 
-	 * @param hashMap
-	 * @param enableHttpEntity
-	 *            if need the HttpEntity,set to true.
-	 * @return InputStream
-	 */
-	protected InputStream executeRequest(HashMap<String, String> hashMap,
-			boolean enableHttpEntity) {
-		HttpPost httpPost = createHttpPost();
+    /**
+     * Execute the HttpPost.
+     * 
+     * @param httpPost
+     * @return InputStream
+     */
+    protected InputStream executeHttpPost(HttpPost httpPost) {
+        InputStream inputStream = null;
+        try {
+            HttpResponse response;
+            response = createHttpClient().execute(httpPost);
+            System.out.println(response.getStatusLine());
+            inputStream = response.getEntity().getContent();
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return inputStream;
+    }
 
-		HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
-		httpPost.setEntity(httpEntity);
+    /**
+     * Execute the request just according to the HashMap parameters. Some
+     * request doesn't need to setEntity,such as {@link SignOutTask},
+     * {@link KeepAliveTask},so you may can't use it,so pass false to it.
+     * 
+     * @param hashMap
+     * @param enableHttpEntity if need the HttpEntity,set to true.
+     * @return InputStream
+     */
+    protected InputStream executeRequest(HashMap<String, String> hashMap,
+            boolean enableHttpEntity) {
+        HttpPost httpPost = createHttpPost();
 
-		return executeHttpPost(httpPost);
-	}
+        HttpEntity httpEntity = createUrlEncodedFormEntity(hashMap);
+        httpPost.setEntity(httpEntity);
+
+        return executeHttpPost(httpPost);
+    }
+
+    /**
+     * Execute the request.
+     * 
+     * @param httpEntity
+     * @param enableHttpEntity
+     * @return
+     */
+    protected InputStream executeRequest(HttpEntity httpEntity,
+            boolean enableHttpEntity) {
+        HttpPost httpPost = createHttpPost();
+        httpPost.setEntity(httpEntity);
+
+        return executeHttpPost(httpPost);
+    }
 
 }
