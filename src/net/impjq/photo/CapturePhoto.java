@@ -1,4 +1,3 @@
-
 package net.impjq.photo;
 
 import android.content.Intent;
@@ -23,215 +22,239 @@ import java.io.FileOutputStream;
 import net.impjq.ftclient.BaseActivity;
 import net.impjq.ftclient.FTPreference;
 import net.impjq.ftclient.R;
+import net.impjq.ftclient.UpdateStatusActivity;
 import net.impjq.ftclient.Utils;
+import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 
-public class CapturePhoto extends BaseActivity implements TaskListener, OnClickListener {
-    public static final int REQUEST_CODE_CAPTURE_PHOTO = 10;
+public class CapturePhoto extends BaseActivity implements TaskListener,
+		OnClickListener {
+	public static final int REQUEST_CODE_CAPTURE_PHOTO = 10;
+	public static final String REQUEST_EXTRAL_URL = "url";
 
-    /**
-     * The Bitmap compress rate:1...100.
-     */
-    public static final int BITMAP_COMPRESS_RATE = 30;
+	/**
+	 * The Bitmap compress rate:1...100.
+	 */
+	public static final int BITMAP_COMPRESS_RATE = 30;
 
-    private Button mCaptureButton;
-    private ImageView mPreviewImageView;
-    private Button mUploadPhotoButton;
-    private Button mChooseFromLocalButton;
-    private ProgressBar mUploadProgressBar;
-    private Bitmap mBitmap;
+	private Button mCaptureButton;
+	private ImageView mPreviewImageView;
+	private Button mUploadPhotoButton;
+	private Button mChooseFromLocalButton;
+	private ProgressBar mUploadProgressBar;
+	private Bitmap mBitmap;
 
-    private String mSdcardStorePath;
-    private String mPhotoFilePath;
+	private String mSdcardStorePath;
+	private String mPhotoFilePath;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
+	private String mResultUrl;
 
-        setContentView(R.layout.upload_photo);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
 
-        init();
+		setContentView(R.layout.upload_photo);
 
-        capturePhotoUpload();
-        // capturePhotoToLocal();
-    }
+		init();
 
-    private void init() {
-        mCaptureButton = (Button) findViewById(R.id.upload_photo_capture_photo_button);
-        mPreviewImageView = (ImageView) findViewById(R.id.upload_photo_preview_imageview);
-        mUploadPhotoButton = (Button) findViewById(R.id.upload_photo_upload_button);
-        mChooseFromLocalButton = (Button) findViewById(R.id.upload_photo_choose_from_local_button);
-        mUploadProgressBar = (ProgressBar) findViewById(R.id.upload_photo_progressbar);
+		capturePhotoUpload();
+		// capturePhotoToLocal();
+	}
 
-        mCaptureButton.setOnClickListener(this);
-        mUploadPhotoButton.setOnClickListener(this);
-        mChooseFromLocalButton.setOnClickListener(this);
+	private void init() {
+		mCaptureButton = (Button) findViewById(R.id.upload_photo_capture_photo_button);
+		mPreviewImageView = (ImageView) findViewById(R.id.upload_photo_preview_imageview);
+		mUploadPhotoButton = (Button) findViewById(R.id.upload_photo_upload_button);
+		mChooseFromLocalButton = (Button) findViewById(R.id.upload_photo_choose_from_local_button);
+		mUploadProgressBar = (ProgressBar) findViewById(R.id.upload_photo_progressbar);
 
-        mSdcardStorePath = Environment.getExternalStorageDirectory().toString()
-                + "/FTClient";
-    }
+		mCaptureButton.setOnClickListener(this);
+		mUploadPhotoButton.setOnClickListener(this);
+		mChooseFromLocalButton.setOnClickListener(this);
 
-    private File preparePath() {
-        String photoName = Utils.createPhotoName();
-        File out = new File(mSdcardStorePath);
-        if (!out.exists()) {
-            out.mkdirs();
-        }
+		mSdcardStorePath = Environment.getExternalStorageDirectory().toString()
+				+ "/FTClient";
+	}
 
-        out = new File(mSdcardStorePath, photoName);
-        mPhotoFilePath = mSdcardStorePath + "/" + photoName;
-        return out;
-    }
+	private File preparePath() {
+		String photoName = Utils.createPhotoName();
+		File out = new File(mSdcardStorePath);
+		if (!out.exists()) {
+			out.mkdirs();
+		}
 
-    /**
-     * It will store the Photo.
-     */
-    protected void capturePhotoToLocal() {
-        // TODO Auto-generated method stub
+		out = new File(mSdcardStorePath, photoName);
+		mPhotoFilePath = mSdcardStorePath + "/" + photoName;
+		return out;
+	}
 
-        File out = preparePath();
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri uri = Uri.fromFile(out);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1024);
-        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-        startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
-    }
+	/**
+	 * It will store the Photo.
+	 */
+	protected void capturePhotoToLocal() {
+		// TODO Auto-generated method stub
 
-    protected void capturePhotoUpload() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
-    }
+		File out = preparePath();
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		Uri uri = Uri.fromFile(out);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+		intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1024);
+		intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+		startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
+	}
 
-    protected boolean storePhoto(Bitmap bitmap, String filePath) {
-        boolean result = false;
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            result = mBitmap.compress(CompressFormat.JPEG, BITMAP_COMPRESS_RATE, fileOutputStream);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+	protected void capturePhotoUpload() {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
+	}
 
-        return result;
-    }
+	protected boolean storePhoto(Bitmap bitmap, String filePath) {
+		boolean result = false;
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+			result = mBitmap.compress(CompressFormat.JPEG,
+					BITMAP_COMPRESS_RATE, fileOutputStream);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
-    /**
-     * Store the current captured photo.
-     * 
-     * @return
-     */
-    protected boolean storePhoto() {
-        boolean result = false;
-        File out = preparePath();
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(out);
-            result = mBitmap.compress(CompressFormat.JPEG, BITMAP_COMPRESS_RATE, fileOutputStream);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+		return result;
+	}
 
-        return result;
-    }
+	/**
+	 * Store the current captured photo.
+	 * 
+	 * @return
+	 */
+	protected boolean storePhoto() {
+		boolean result = false;
+		File out = preparePath();
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream(out);
+			result = mBitmap.compress(CompressFormat.JPEG,
+					BITMAP_COMPRESS_RATE, fileOutputStream);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-    private void setProgressBarVisibility(int visibility) {
-        mUploadProgressBar.setVisibility(visibility);
-    }
+		return result;
+	}
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
+	private void setProgressBarVisibility(int visibility) {
+		mUploadProgressBar.setVisibility(visibility);
+	}
 
-        Bundle extras = null;
-        if (null != data) {
-            extras = data.getExtras();
-        }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
-            case REQUEST_CODE_CAPTURE_PHOTO: {
-                if (resultCode == RESULT_OK && null != extras) {// Has extras
-                    Bitmap b = (Bitmap) extras.get("data");
-                    b = Utils.resizeBitmap(b, 320);
-                    mBitmap = b;
-                    storePhoto();
+		Bundle extras = null;
+		if (null != data) {
+			extras = data.getExtras();
+		}
 
-                    mPreviewImageView.setImageBitmap(b);
-                } else if (resultCode == RESULT_OK) {// No extras,if store in
-                    // the local.
+		switch (requestCode) {
+		case REQUEST_CODE_CAPTURE_PHOTO: {
+			if (resultCode == RESULT_OK && null != extras) {// Has extras
+				Bitmap b = (Bitmap) extras.get("data");
+				b = Utils.resizeBitmap(b, 320);
+				mBitmap = b;
+				storePhoto();
 
-                    try {
-                        Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mPhotoFilePath));
-                        mPreviewImageView.setImageBitmap(b);
-                    } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
+				mPreviewImageView.setImageBitmap(b);
+			} else if (resultCode == RESULT_OK) {// No extras,if store in
+				// the local.
 
-                break;
-            }
+				try {
+					Bitmap b = BitmapFactory.decodeStream(new FileInputStream(
+							mPhotoFilePath));
+					mPreviewImageView.setImageBitmap(b);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
-            default:
-                break;
-        }
-    }
+			break;
+		}
 
-    private void uploadPhoto(Bitmap bitmap) {
-        // TODO Auto-generated method stub
-        UploadPhoto uploadPhoto = new UploadPhoto();
-        // uploadPhoto.setBitmap(bitmap);
-        String serverUrl = FTPreference.getInstance(getApplicationContext()).getServerUrl();
-        UploadPhoto.setServerUrl(serverUrl);
-        uploadPhoto.setFilePath(mPhotoFilePath);
-        runBaseTask(uploadPhoto, this);
-    }
+		default:
+			break;
+		}
+	}
 
-    @Override
-    public void onTaskStart(Object task) {
-        // TODO Auto-generated method stub
-        setProgressBarVisibility(View.VISIBLE);
-    }
+	private void returnResult() {
+		Intent intent = new Intent();
+		intent.setClass(this, UpdateStatusActivity.class);
+		intent.putExtra(REQUEST_EXTRAL_URL, mResultUrl);
 
-    @Override
-    public void onTaskProgressUpdate(Object task, Integer... values) {
-        // TODO Auto-generated method stub
+		setResult(RESULT_OK, intent);
+		finish();
+	}
 
-    }
+	private void uploadPhoto(Bitmap bitmap) {
+		// TODO Auto-generated method stub
+		UploadPhoto uploadPhoto = new UploadPhoto();
+		// uploadPhoto.setBitmap(bitmap);
+		String serverUrl = FTPreference.getInstance(getApplicationContext())
+				.getServerUrl();
+		UploadPhoto.setServerUrl(serverUrl);
+		uploadPhoto.setFilePath(mPhotoFilePath);
+		runBaseTask(uploadPhoto, this);
+	}
 
-    @Override
-    public void OnTaskFinished(Object task) {
-        // TODO Auto-generated method stub
-        setProgressBarVisibility(View.GONE);
-    }
+	@Override
+	public void onTaskStart(Object task) {
+		// TODO Auto-generated method stub
+		setProgressBarVisibility(View.VISIBLE);
+	}
 
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
+	@Override
+	public void onTaskProgressUpdate(Object task, Integer... values) {
+		// TODO Auto-generated method stub
 
-        int id = v.getId();
+	}
 
-        switch (id) {
-            case R.id.upload_photo_capture_photo_button: {
-                capturePhotoUpload();
-                // capturePhotoToLocal();
-                break;
-            }
+	@Override
+	public void OnTaskFinished(Object task) {
+		// TODO Auto-generated method stub
+		setProgressBarVisibility(View.GONE);
+		mResultUrl = ((BaseTask) task).getResponse();
 
-            case R.id.upload_photo_upload_button: {
-                uploadPhoto(mBitmap);
-                break;
-            }
+		if (!Utils.isEmpty(mResultUrl)) {
+			returnResult();
+		}
+	}
 
-            case R.id.upload_photo_choose_from_local_button: {
-                // TODO add the handle here.
-                break;
-            }
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
 
-            default:
-                break;
-        }
-    }
+		int id = v.getId();
+
+		switch (id) {
+		case R.id.upload_photo_capture_photo_button: {
+			capturePhotoUpload();
+			// capturePhotoToLocal();
+			break;
+		}
+
+		case R.id.upload_photo_upload_button: {
+			uploadPhoto(mBitmap);
+			break;
+		}
+
+		case R.id.upload_photo_choose_from_local_button: {
+			// TODO add the handle here.
+			break;
+		}
+
+		default:
+			break;
+		}
+	}
 
 }
