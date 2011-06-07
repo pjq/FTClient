@@ -9,7 +9,13 @@
 	<string name="input_server">Please input the server url</string>
 	<string name="input_username">Username</string>
 	<string name="input_password">Password</string>
-	<string name="default_server_url">https://216.24.194.197:8443/HelloServlet</string>
+	<!-- string name="default_server_url">https://216.24.194.197:8443/HelloServlet</string-->
+	<string name="default_server_url">http://172.21.30.143:8080/HelloServlet</string>
 	<string name="clear_response">Clear</string>
 	<string name="get_user_timeline">GetUserTimeline</string>
+
+
+	<!--UploadPhoto -->
+	<string name="upload_photo">UploadPhoto</string>
+	<string name="capture_photo">Capture</string>
 </resources>

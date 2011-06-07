@@ -25,7 +25,7 @@ import net.impjq.httpclient.HttpClientHelper;
 
 public abstract class BaseTask implements Runnable {
     public static final String TAG = BaseTask.class.getSimpleName();
-    static String mServerURL = "http://216.24.194.197:1985/HelloServlet";
+    static String mServerURL = "";
 
     public static final String SERVICE_TYPE_TWITTER = "s1";
     public static final String SERVICE_TYPE_FACEBOOK = "s2";
@@ -58,6 +58,7 @@ public abstract class BaseTask implements Runnable {
     protected String mMessage;
 
     public static void setServerUrl(String url) {
+        //Utils.log(TAG, "setServerUrl="+url);
         mServerURL = url;
     }
 

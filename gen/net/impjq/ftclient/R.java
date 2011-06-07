@@ -50,24 +50,32 @@ public final class R {
         public static final int twitter=0x7f020002;
     }
     public static final class id {
-        public static final int get_user_timeline_button=0x7f080007;
+        public static final int get_user_timeline_button=0x7f080008;
         public static final int update_status_button=0x7f080000;
-        public static final int update_status_clear_response_button=0x7f080008;
+        public static final int update_status_capture_button=0x7f080005;
+        public static final int update_status_clear_response_button=0x7f080009;
         public static final int update_status_input_edittext=0x7f080004;
         public static final int update_status_password_input_edittext=0x7f080002;
-        public static final int update_status_progressbar=0x7f080006;
-        public static final int update_status_response_textview=0x7f080009;
+        public static final int update_status_progressbar=0x7f080007;
+        public static final int update_status_response_textview=0x7f08000a;
         public static final int update_status_server_input_edittext=0x7f080003;
-        public static final int update_status_update_button=0x7f080005;
+        public static final int update_status_update_button=0x7f080006;
         public static final int update_status_username_input_edittext=0x7f080001;
+        public static final int upload_photo_capture_photo_button=0x7f08000b;
+        public static final int upload_photo_preview_imageview=0x7f08000c;
+        public static final int upload_photo_upload_button=0x7f08000d;
     }
     public static final class layout {
         public static final int main=0x7f030000;
         public static final int update_status_layout=0x7f030001;
+        public static final int upload_photo=0x7f030002;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
+        public static final int capture_photo=0x7f06000c;
         public static final int clear_response=0x7f060009;
+        /**  string name="default_server_url">https://216.24.194.197:8443/HelloServlet</string
+         */
         public static final int default_server_url=0x7f060008;
         public static final int get_user_timeline=0x7f06000a;
         public static final int hello=0x7f060000;
@@ -77,6 +85,9 @@ public final class R {
         public static final int response=0x7f060004;
         public static final int update_status=0x7f060003;
         public static final int update_status_hint=0x7f060002;
+        /** UploadPhoto 
+         */
+        public static final int upload_photo=0x7f06000b;
     }
     public static final class style {
         public static final int FTClienttheme=0x7f070000;

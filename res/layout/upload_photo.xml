@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:gravity="center">
+	<Button android:text="@string/capture_photo" android:id="@+id/upload_photo_capture_photo_button"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+	<ImageView android:id="@+id/upload_photo_preview_imageview"
+		android:layout_width="100dip" android:layout_height="100dip"></ImageView>
+	<Button android:text="@string/upload_photo" android:id="@+id/upload_photo_upload_button"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</LinearLayout>

@@ -34,6 +34,7 @@ public class UpdateStatusActivity extends BaseActivity implements
     private EditText mPasswordInputEditText;
     private Button mClearResponseButton;
     private Button mGetUserTimelineButton;
+    private Button mCapturePhotoButton;
 
     private FTPreference mFTPreference;
     private String mUserName;
@@ -66,10 +67,12 @@ public class UpdateStatusActivity extends BaseActivity implements
         mPasswordInputEditText = (EditText) findViewById(R.id.update_status_password_input_edittext);
         mClearResponseButton = (Button) findViewById(R.id.update_status_clear_response_button);
         mGetUserTimelineButton = (Button) findViewById(R.id.get_user_timeline_button);
+        mCapturePhotoButton = (Button) findViewById(R.id.update_status_capture_button);
 
         mUpdateStatusUpdateButton.setOnClickListener(this);
         mClearResponseButton.setOnClickListener(this);
         mGetUserTimelineButton.setOnClickListener(this);
+        mCapturePhotoButton.setOnClickListener(this);
 
         mUserNameInputEditText.setText(mFTPreference.getUserName());
         mPasswordInputEditText.setText(mFTPreference.getPassword());
@@ -164,8 +167,11 @@ public class UpdateStatusActivity extends BaseActivity implements
 
                 getUserTimeline(mUserName, mPassword);
 
-                // Test code,start the CapturePhoto Activity.
-                Intent intent=new Intent();
+                break;
+            }
+
+            case R.id.update_status_capture_button: {
+                Intent intent = new Intent();
                 intent.setClass(this, CapturePhoto.class);
                 startActivity(intent);
 

@@ -1,14 +1,17 @@
 
 package net.impjq.photo;
 
+import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.ContentDescriptor;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStream;
 
 import net.impjq.ftclient.Utils;
@@ -16,7 +19,8 @@ import net.impjq.ftclient.api.BaseTask;
 import net.impjq.httpclient.HttpClientHelper;
 
 public class UploadPhoto extends BaseTask {
-    private Bitmap mBitmap;
+    private Bitmap mBitmap = null;
+    private String mFilePath = null;
 
     public void setBitmap(Bitmap bitmap) {
         mBitmap = bitmap;
@@ -24,6 +28,14 @@ public class UploadPhoto extends BaseTask {
 
     public Bitmap getBitmap() {
         return mBitmap;
+    }
+
+    public void setFilePath(String filePath) {
+        mFilePath = filePath;
+    }
+
+    public String getFilePath() {
+        return mFilePath;
     }
 
     public UploadPhoto() {
@@ -37,7 +49,12 @@ public class UploadPhoto extends BaseTask {
     public void run() {
         // TODO Auto-generated method stub
         try {
-            executeMultipartPost();
+            if (null != mBitmap) {
+                executeMultipartPost();
+            } else if (null != mFilePath) {
+                executeMultipartPost(mFilePath);
+            }
+
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -47,7 +64,7 @@ public class UploadPhoto extends BaseTask {
     public void executeMultipartPost() throws Exception {
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            getBitmap().compress(CompressFormat.JPEG, 75, bos);
+            getBitmap().compress(CompressFormat.JPEG, 20, bos);
             byte[] data = bos.toByteArray();
             ByteArrayBody bab = new ByteArrayBody(data, "forest.jpg");
             MultipartEntity reqEntity = new MultipartEntity(
@@ -56,6 +73,21 @@ public class UploadPhoto extends BaseTask {
 
             InputStream inputStream = executeRequest(reqEntity, true);
 
+            String result = HttpClientHelper.getInstance().readFromInputStream(
+                    inputStream);
+            Utils.log(TAG, "result=" + result);
+            mResponse = result;
+        } catch (Exception e) {
+            // handle exception here
+
+        }
+    }
+
+    public void executeMultipartPost(String filePath) throws Exception {
+        try {
+            File file = new File(filePath);
+            FileEntity fileEntity = new FileEntity(file, "image/jpeg");
+            InputStream inputStream = executeRequest(fileEntity, true);
             String result = HttpClientHelper.getInstance().readFromInputStream(
                     inputStream);
             Utils.log(TAG, "result=" + result);
