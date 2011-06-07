@@ -5,7 +5,6 @@ import org.apache.http.entity.FileEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
-import org.apache.http.entity.mime.content.ContentDescriptor;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -18,6 +17,14 @@ import net.impjq.ftclient.Utils;
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.httpclient.HttpClientHelper;
 
+/**
+ * Upload the Photo,if need you can delete the file with {@link #deleteFile()}
+ * after upload finished. <br>
+ * Here it provide two ways to upload photo:the {@link #mBitmap} and
+ * {@link #mFilePath}.you just need fill one of these two values.
+ * 
+ * @author pjq0274
+ */
 public class UploadPhoto extends BaseTask {
     private Bitmap mBitmap = null;
     private String mFilePath = null;
@@ -92,9 +99,18 @@ public class UploadPhoto extends BaseTask {
                     inputStream);
             Utils.log(TAG, "result=" + result);
             mResponse = result;
+
+            // deleteFile();
         } catch (Exception e) {
             // handle exception here
 
+        }
+    }
+
+    public void deleteFile() {
+        File file = new File(mFilePath);
+        if (file.exists()) {
+            file.delete();
         }
     }
 

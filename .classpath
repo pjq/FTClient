@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="libs/httpmime-4.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpmime-4.1.1.jar" sourcepath="D:/android/httpclient/httpcomponents-client-4.1.1-bin.tar/httpcomponents-client-4.1.1-bin/httpcomponents-client-4.1.1/javadoc/org/apache/http"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
