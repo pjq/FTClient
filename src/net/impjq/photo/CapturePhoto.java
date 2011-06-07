@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +37,8 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
     private Button mCaptureButton;
     private ImageView mPreviewImageView;
     private Button mUploadPhotoButton;
+    private Button mChooseFromLocalButton;
+    private ProgressBar mUploadProgressBar;
     private Bitmap mBitmap;
 
     private String mSdcardStorePath;
@@ -58,9 +61,12 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
         mCaptureButton = (Button) findViewById(R.id.upload_photo_capture_photo_button);
         mPreviewImageView = (ImageView) findViewById(R.id.upload_photo_preview_imageview);
         mUploadPhotoButton = (Button) findViewById(R.id.upload_photo_upload_button);
+        mChooseFromLocalButton = (Button) findViewById(R.id.upload_photo_choose_from_local_button);
+        mUploadProgressBar = (ProgressBar) findViewById(R.id.upload_photo_progressbar);
 
         mCaptureButton.setOnClickListener(this);
         mUploadPhotoButton.setOnClickListener(this);
+        mChooseFromLocalButton.setOnClickListener(this);
 
         mSdcardStorePath = Environment.getExternalStorageDirectory().toString()
                 + "/FTClient";
@@ -129,6 +135,10 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
         return result;
     }
 
+    private void setProgressBarVisibility(int visibility) {
+        mUploadProgressBar.setVisibility(visibility);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
@@ -181,7 +191,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
     @Override
     public void onTaskStart(Object task) {
         // TODO Auto-generated method stub
-
+        setProgressBarVisibility(View.VISIBLE);
     }
 
     @Override
@@ -193,7 +203,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
     @Override
     public void OnTaskFinished(Object task) {
         // TODO Auto-generated method stub
-
+        setProgressBarVisibility(View.GONE);
     }
 
     @Override
@@ -211,6 +221,11 @@ public class CapturePhoto extends BaseActivity implements TaskListener, OnClickL
 
             case R.id.upload_photo_upload_button: {
                 uploadPhoto(mBitmap);
+                break;
+            }
+
+            case R.id.upload_photo_choose_from_local_button: {
+                // TODO add the handle here.
                 break;
             }
 

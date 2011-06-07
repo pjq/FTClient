@@ -62,8 +62,10 @@ public final class R {
         public static final int update_status_update_button=0x7f080006;
         public static final int update_status_username_input_edittext=0x7f080001;
         public static final int upload_photo_capture_photo_button=0x7f08000b;
-        public static final int upload_photo_preview_imageview=0x7f08000c;
-        public static final int upload_photo_upload_button=0x7f08000d;
+        public static final int upload_photo_choose_from_local_button=0x7f08000c;
+        public static final int upload_photo_preview_imageview=0x7f08000d;
+        public static final int upload_photo_progressbar=0x7f08000f;
+        public static final int upload_photo_upload_button=0x7f08000e;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -73,9 +75,10 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f060001;
         public static final int capture_photo=0x7f06000c;
-        public static final int clear_response=0x7f060009;
-        /**  string name="default_server_url">https://216.24.194.197:8443/HelloServlet</string
+        public static final int choose_from_local=0x7f06000d;
+        /**  string name="default_server_url">http://172.21.30.143:8080/HelloServlet</string 
          */
+        public static final int clear_response=0x7f060009;
         public static final int default_server_url=0x7f060008;
         public static final int get_user_timeline=0x7f06000a;
         public static final int hello=0x7f060000;
