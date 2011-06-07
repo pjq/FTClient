@@ -25,9 +25,9 @@
 			<EditText android:id="@+id/update_status_input_edittext"
 				android:layout_width="0dip" android:layout_weight="1.0"
 				android:layout_height="100dip" android:hint="@string/update_status_hint"></EditText>
-			<Button android:text="@string/capture_photo" android:id="@+id/update_status_capture_button"
-				android:layout_width="15dip" android:layout_height="fill_parent"
-				android:layout_weight="0" android:background="@color/red"></Button>
+			<Button android:id="@+id/update_status_capture_button"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="0" android:background="@drawable/camera"></Button>
 		</LinearLayout>
 
 		<LinearLayout android:layout_width="fill_parent"

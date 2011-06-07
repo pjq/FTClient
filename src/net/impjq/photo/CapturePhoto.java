@@ -164,6 +164,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
 				mBitmap = b;
 				storePhoto();
 
+				uploadPhoto(mBitmap);
 				mPreviewImageView.setImageBitmap(b);
 			} else if (resultCode == RESULT_OK) {// No extras,if store in
 				// the local.
