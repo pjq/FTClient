@@ -20,6 +20,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
+import net.impjq.ftclient.CommonParamString;
 import net.impjq.ftclient.Utils;
 import net.impjq.httpclient.HttpClientHelper;
 
@@ -58,7 +59,7 @@ public abstract class BaseTask implements Runnable {
     protected String mMessage;
 
     public static void setServerUrl(String url) {
-        //Utils.log(TAG, "setServerUrl="+url);
+        // Utils.log(TAG, "setServerUrl="+url);
         mServerURL = url;
     }
 
@@ -164,6 +165,12 @@ public abstract class BaseTask implements Runnable {
         httpPost = new HttpPost(createUrl());
         httpPost.addHeader("Accept", "text/plain");
         httpPost.addHeader("Accept-Charset", "UTF-8,*;q=0.5");
+
+        if (!Utils.isEmpty(getUserName()) && !Utils.isEmpty(getPassword())) {
+            httpPost.addHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD,
+                    CommonParamString.PARAM_USERNAME + "=" + getUserName() + "&"
+                            + CommonParamString.PARAM_PASSWORD + "=" + getPassword());
+        }
 
         return httpPost;
     }

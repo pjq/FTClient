@@ -26,8 +26,8 @@ public class UpdateStatus extends BaseTask {
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 
 		hashMap.put(CommonParamString.PARAM_MACHINE, Build.MODEL);
-		hashMap.put(CommonParamString.PARAM_USERNAME, getUserName());
-		hashMap.put(CommonParamString.PARAM_PASSWORD, getPassword());
+		//hashMap.put(CommonParamString.PARAM_USERNAME, getUserName());
+		//hashMap.put(CommonParamString.PARAM_PASSWORD, getPassword());
 		hashMap.put(CommonParamString.PARAM_MESSAGE, getMessage());
 		hashMap.put(CommonParamString.PARAM_TIME, Utils.getTime());
 		try {
