@@ -93,7 +93,7 @@ public class UploadPhoto extends BaseTask {
     public void executeMultipartPost(String filePath) throws Exception {
         try {
             File file = new File(filePath);
-            FileEntity fileEntity = new FileEntity(file, "image/jpeg");
+            FileEntity fileEntity = new FileEntity(file, "image/png");
             InputStream inputStream = executeRequest(fileEntity, true);
             String result = HttpClientHelper.getInstance().readFromInputStream(
                     inputStream);

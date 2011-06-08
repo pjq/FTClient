@@ -40,7 +40,7 @@ public class Utils {
     }
 
     public static String createPhotoName() {
-        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";
+        return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".png";
     }
 
     public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth) {

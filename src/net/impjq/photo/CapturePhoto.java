@@ -113,7 +113,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
 		boolean result = false;
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-			result = mBitmap.compress(CompressFormat.JPEG,
+			result = mBitmap.compress(CompressFormat.PNG,
 					BITMAP_COMPRESS_RATE, fileOutputStream);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -132,7 +132,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
 		File out = preparePath();
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(out);
-			result = mBitmap.compress(CompressFormat.JPEG,
+			result = mBitmap.compress(CompressFormat.PNG,
 					BITMAP_COMPRESS_RATE, fileOutputStream);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
