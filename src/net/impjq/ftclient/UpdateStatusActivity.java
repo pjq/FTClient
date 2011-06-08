@@ -155,6 +155,10 @@ public class UpdateStatusActivity extends BaseActivity implements
         } else {
             mClearInputButton.setVisibility(View.VISIBLE);
         }
+        
+        if (140==length) {
+            showToast(getString(R.string.execeed_limit_length));
+        }
     }
 
     private void setClearButtonVisible() {

@@ -13,6 +13,7 @@
 	<!-- string name="default_server_url">http://172.21.30.143:8080/HelloServlet</string -->
 	<string name="clear_response">Clear</string>
 	<string name="get_user_timeline">GetUserTimeline</string>
+	<string name="execeed_limit_length">Exceed the max length 140.</string>
 
 
 	<!--UploadPhoto -->

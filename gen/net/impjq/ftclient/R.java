@@ -79,12 +79,13 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060001;
-        public static final int capture_photo=0x7f06000c;
-        public static final int choose_from_local=0x7f06000d;
+        public static final int capture_photo=0x7f06000d;
+        public static final int choose_from_local=0x7f06000e;
         /**  string name="default_server_url">http://172.21.30.143:8080/HelloServlet</string 
          */
         public static final int clear_response=0x7f060009;
         public static final int default_server_url=0x7f060008;
+        public static final int execeed_limit_length=0x7f06000b;
         public static final int get_user_timeline=0x7f06000a;
         public static final int hello=0x7f060000;
         public static final int input_password=0x7f060007;
@@ -95,7 +96,7 @@ public final class R {
         public static final int update_status_hint=0x7f060002;
         /** UploadPhoto 
          */
-        public static final int upload_photo=0x7f06000b;
+        public static final int upload_photo=0x7f06000c;
     }
     public static final class style {
         public static final int FTClienttheme=0x7f070000;
