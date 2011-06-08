@@ -43,12 +43,30 @@ public class Utils {
         return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".png";
     }
 
-    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth) {
+    public static Bitmap resizeBitmapWidth(Bitmap bitmap, int newWidth) {
 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         float temp = ((float) height) / ((float) width);
         int newHeight = (int) ((newWidth) * temp);
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        Matrix matrix = new Matrix(); // resize the bit map
+
+        matrix.postScale(scaleWidth, scaleHeight);
+        // matrix.postRotate(45);
+        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+                    matrix, true);
+        bitmap.recycle();
+        return resizedBitmap;
+    }
+
+    public static Bitmap resizeBitmapHeight(Bitmap bitmap, int newHeight) {
+
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        float temp = ((float) height) / ((float) width);
+        int newWidth = (int) ((newHeight) / temp);
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
         Matrix matrix = new Matrix(); // resize the bit map

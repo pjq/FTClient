@@ -47,26 +47,30 @@ public final class R {
     public static final class drawable {
         public static final int camera=0x7f020000;
         public static final int facebook=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int twitter=0x7f020003;
+        public static final int ic_delete=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int twitter=0x7f020004;
     }
     public static final class id {
-        public static final int get_user_timeline_button=0x7f080008;
+        public static final int get_user_timeline_button=0x7f08000a;
         public static final int update_status_button=0x7f080000;
-        public static final int update_status_capture_button=0x7f080005;
-        public static final int update_status_clear_response_button=0x7f080009;
+        public static final int update_status_capture_button=0x7f080007;
+        public static final int update_status_clear_input_button=0x7f080005;
+        public static final int update_status_clear_response_button=0x7f08000b;
         public static final int update_status_input_edittext=0x7f080004;
+        public static final int update_status_length_textview=0x7f080006;
         public static final int update_status_password_input_edittext=0x7f080002;
-        public static final int update_status_progressbar=0x7f080007;
-        public static final int update_status_response_textview=0x7f08000a;
+        public static final int update_status_progressbar=0x7f080009;
+        public static final int update_status_response_textview=0x7f08000c;
         public static final int update_status_server_input_edittext=0x7f080003;
-        public static final int update_status_update_button=0x7f080006;
+        public static final int update_status_update_button=0x7f080008;
         public static final int update_status_username_input_edittext=0x7f080001;
-        public static final int upload_photo_capture_photo_button=0x7f08000b;
-        public static final int upload_photo_choose_from_local_button=0x7f08000c;
-        public static final int upload_photo_preview_imageview=0x7f08000d;
-        public static final int upload_photo_progressbar=0x7f08000f;
-        public static final int upload_photo_upload_button=0x7f08000e;
+        public static final int upload_photo_capture_photo_button=0x7f08000d;
+        public static final int upload_photo_choose_from_local_button=0x7f08000e;
+        public static final int upload_photo_info_textview=0x7f080010;
+        public static final int upload_photo_preview_imageview=0x7f08000f;
+        public static final int upload_photo_progressbar=0x7f080012;
+        public static final int upload_photo_upload_button=0x7f080011;
     }
     public static final class layout {
         public static final int main=0x7f030000;

@@ -15,8 +15,12 @@
 	</LinearLayout>
 
 	<ImageView android:id="@+id/upload_photo_preview_imageview"
-		android:layout_width="100dip" android:layout_height="0dip"
-		android:layout_weight="1.0"></ImageView>
+		android:layout_width="fill_parent" android:layout_height="0dip"
+		android:layout_weight="1.0" android:layout_gravity="center"
+		android:scaleType="fitCenter"></ImageView>
+	<TextView android:id="@+id/upload_photo_info_textview"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center_horizontal"></TextView>
 	<LinearLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
 		<Button android:text="@string/upload_photo" android:id="@+id/upload_photo_upload_button"

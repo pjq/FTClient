@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,13 +37,15 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
     /**
      * The Bitmap compress rate:1...100.
      */
-    public static final int BITMAP_COMPRESS_RATE = 30;
+    public static final int BITMAP_COMPRESS_RATE = 20;
 
     private Button mCaptureButton;
     private ImageView mPreviewImageView;
     private Button mUploadPhotoButton;
     private Button mChooseFromLocalButton;
     private ProgressBar mUploadProgressBar;
+    private TextView mPhotoInfoTextView;
+
     private Bitmap mBitmap;
 
     private String mSdcardStorePath;
@@ -69,6 +72,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         mUploadPhotoButton = (Button) findViewById(R.id.upload_photo_upload_button);
         mChooseFromLocalButton = (Button) findViewById(R.id.upload_photo_choose_from_local_button);
         mUploadProgressBar = (ProgressBar) findViewById(R.id.upload_photo_progressbar);
+        mPhotoInfoTextView = (TextView) findViewById(R.id.upload_photo_info_textview);
 
         mCaptureButton.setOnClickListener(this);
         mUploadPhotoButton.setOnClickListener(this);
@@ -123,6 +127,20 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         return result;
     }
 
+    // private Bitmap resizeBitmap(Bitmap bitmap, int w, int h) {
+    // int width = bitmap.getWidth();
+    // int height = bitmap.getHeight();
+    //
+    // float scaleWidth = (float) w / width;
+    // float scaleHeight = (float) h / height;
+    //
+    // Matrix matrix = new Matrix();
+    // matrix.postScale(scaleWidth, scaleHeight);
+    // Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+    // matrix, false);
+    // return resizedBitmap;
+    // }
+
     /**
      * Store the current captured photo.
      * 
@@ -135,12 +153,20 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
             FileOutputStream fileOutputStream = new FileOutputStream(out);
             result = mBitmap.compress(CompressFormat.PNG,
                     BITMAP_COMPRESS_RATE, fileOutputStream);
+
+            updatePhotoInfo(out);
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return result;
+    }
+
+    private void updatePhotoInfo(File file) {
+        long size = file.length();
+        String info = "size:" + size / 1024 + " KB\n   " + mPhotoFilePath;
+        mPhotoInfoTextView.setText(info);
     }
 
     private void setProgressBarVisibility(int visibility) {
@@ -161,7 +187,9 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
             case REQUEST_CODE_CAPTURE_PHOTO: {
                 if (resultCode == RESULT_OK && null != extras) {// Has extras
                     Bitmap b = (Bitmap) extras.get("data");
-                    b = Utils.resizeBitmap(b, 320);
+                    // b=resizeBitmap(b, 72, 72);
+                    b = Utils.resizeBitmapHeight(b, 320);
+
                     mBitmap = b;
                     storePhoto();
 
@@ -214,6 +242,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
     public void onTaskStart(Object task) {
         // TODO Auto-generated method stub
         setProgressBarVisibility(View.VISIBLE);
+        mUploadPhotoButton.setEnabled(false);
     }
 
     @Override
@@ -231,6 +260,8 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         if (!Utils.isEmpty(mResultUrl)) {
             returnResult();
         }
+
+        mUploadPhotoButton.setEnabled(true);
     }
 
     @Override
