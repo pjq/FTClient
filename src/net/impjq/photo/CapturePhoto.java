@@ -1,6 +1,7 @@
 
 package net.impjq.photo;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,6 +33,7 @@ import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 public class CapturePhoto extends BaseActivity implements TaskListener,
         OnClickListener {
     public static final int REQUEST_CODE_CAPTURE_PHOTO = 10;
+    public static final int REQUEST_CODE_GALLERY = REQUEST_CODE_CAPTURE_PHOTO + 1;
     public static final String REQUEST_EXTRAL_URL = "url";
 
     /**
@@ -211,6 +213,27 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
                 break;
             }
 
+            case REQUEST_CODE_GALLERY: {
+                mBitmap = null;
+
+                if (resultCode == RESULT_OK && null != extras) {
+                    try {
+                        Bitmap b = data.getParcelableExtra("data");
+                        b = Utils.resizeBitmapHeight(b, 320);
+
+                        mBitmap = b;
+                        storePhoto();
+
+                        uploadPhoto(mBitmap);
+                        mPreviewImageView.setImageBitmap(b);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                }
+
+                break;
+            }
+
             default:
                 break;
         }
@@ -284,11 +307,35 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
 
             case R.id.upload_photo_choose_from_local_button: {
                 // TODO add the handle here.
+                // preparePath();
+                doPickPhotoFromGallery();
                 break;
             }
 
             default:
                 break;
+        }
+    }
+
+    private Intent getPhotoPickIntent() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 320);
+        intent.putExtra("outputY", 480);
+        intent.putExtra("return-data", true);
+        return intent;
+    }
+
+    private void doPickPhotoFromGallery() {
+        try {
+            // Launch picker to choose photo for selected contact
+            final Intent intent = getPhotoPickIntent();
+            startActivityForResult(intent, REQUEST_CODE_GALLERY);
+        } catch (ActivityNotFoundException e) {
+            showToast(getString(R.string.choose_from_local_failed));
         }
     }
 

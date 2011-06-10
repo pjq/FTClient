@@ -20,4 +20,5 @@
 	<string name="upload_photo">UploadPhoto</string>
 	<string name="capture_photo">Capture</string>
 	<string name="choose_from_local">Local File</string>
+	<string name="choose_from_local_failed">Local File Failed</string>
 </resources>

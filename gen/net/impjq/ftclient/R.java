@@ -81,6 +81,7 @@ public final class R {
         public static final int app_name=0x7f060001;
         public static final int capture_photo=0x7f06000d;
         public static final int choose_from_local=0x7f06000e;
+        public static final int choose_from_local_failed=0x7f06000f;
         /**  string name="default_server_url">http://172.21.30.143:8080/HelloServlet</string 
          */
         public static final int clear_response=0x7f060009;

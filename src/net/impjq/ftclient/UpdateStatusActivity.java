@@ -155,8 +155,8 @@ public class UpdateStatusActivity extends BaseActivity implements
         } else {
             mClearInputButton.setVisibility(View.VISIBLE);
         }
-        
-        if (140==length) {
+
+        if (140 == length) {
             showToast(getString(R.string.execeed_limit_length));
         }
     }
@@ -216,6 +216,7 @@ public class UpdateStatusActivity extends BaseActivity implements
                 getUserTimeline(mUserName, mPassword);
                 mFTPreference.storeAll(mUserName, mPassword, mServerUrl);
 
+                //asyncTaskTest(137);
                 break;
             }
 
@@ -237,6 +238,13 @@ public class UpdateStatusActivity extends BaseActivity implements
                 break;
         }
 
+    }
+
+    protected void asyncTaskTest(int size) {
+        for (int i = 0; i < size; i++) {
+            Utils.log(TAG, "execute getUserTimeline "+i);
+            getUserTimeline(mUserName, mPassword);
+        }
     }
 
     @Override
