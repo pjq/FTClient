@@ -148,7 +148,7 @@ public class FTPreference {
      * @param userList
      */
     public synchronized ArrayList<String> storeUserList(ArrayList<String> userList) {
-        ArrayList<String> currentList = getUserList();
+        ArrayList<String> currentList = getUserListWithoutAT();
         for (String str : userList) {
             if (!currentList.contains(str)) {
                 currentList.add(str);
@@ -157,6 +157,30 @@ public class FTPreference {
 
         store(USER_LIST, currentList.toString());
         return currentList;
+    }
+
+    /**
+     * Get the user list.
+     */
+    public synchronized ArrayList<String> getUserListWithoutAT() {
+        ArrayList<String> userList = new ArrayList<String>();
+
+        String userStrings = restore(USER_LIST, "");
+
+        userStrings = userStrings.replace(" ", "");
+        userStrings = userStrings.replace("[", "");
+        userStrings = userStrings.replace("]", "");
+        String[] user = userStrings.split(",");
+
+        for (String str : user) {
+            if (!userList.contains(str)) {
+                // Get two types.
+                userList.add(str);
+                // userList.add("@" + str);
+            }
+        }
+
+        return userList;
     }
 
     /**
