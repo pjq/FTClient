@@ -29,10 +29,10 @@
 			android:layout_height="wrap_content" android:orientation="horizontal">
 			<RelativeLayout android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1.0">
-				<EditText android:id="@+id/update_status_input_edittext"
+				<MultiAutoCompleteTextView android:id="@+id/update_status_input_edittext"
 					android:layout_width="fill_parent" android:layout_weight="1.0"
 					android:layout_height="100dip" android:hint="@string/update_status_hint"
-					android:gravity="top"></EditText>
+					android:gravity="top"></MultiAutoCompleteTextView>
 				<Button android:id="@+id/update_status_clear_input_button"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:layout_weight="0" android:background="@drawable/ic_delete"

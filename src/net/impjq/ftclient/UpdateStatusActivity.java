@@ -3,6 +3,7 @@ package net.impjq.ftclient;
 
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
+import net.impjq.ftclient.api.twitter.GetUserTimeline;
 import net.impjq.photo.CapturePhoto;
 
 import android.content.Intent;
@@ -16,17 +17,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.MultiAutoCompleteTextView.Tokenizer;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class UpdateStatusActivity extends BaseActivity implements
         OnClickListener, TaskListener, OnTouchListener, OnGestureListener {
     public static final String TAG = UpdateStatusActivity.class.getSimpleName();
 
     private EditText mServerInputEditText;
-    private EditText mUpdateStatusInputEditText;
+    private MultiAutoCompleteTextView mUpdateStatusInputEditText;
     private Button mUpdateStatusUpdateButton;
     private ProgressBar mUpdateStatusProgressBar;
     private TextView mUpdateStatusResponseTextView;
@@ -63,7 +70,7 @@ public class UpdateStatusActivity extends BaseActivity implements
         mFTPreference = FTPreference.getInstance(getApplicationContext());
 
         mServerInputEditText = (EditText) findViewById(R.id.update_status_server_input_edittext);
-        mUpdateStatusInputEditText = (EditText) findViewById(R.id.update_status_input_edittext);
+        mUpdateStatusInputEditText = (MultiAutoCompleteTextView) findViewById(R.id.update_status_input_edittext);
         mUpdateStatusUpdateButton = (Button) findViewById(R.id.update_status_update_button);
         mUpdateStatusProgressBar = (ProgressBar) findViewById(R.id.update_status_progressbar);
         mUpdateStatusResponseTextView = (TextView) findViewById(R.id.update_status_response_textview);
@@ -146,6 +153,19 @@ public class UpdateStatusActivity extends BaseActivity implements
         // mUpdateStatusInputEditText.setOnTouchListener(this);
         // mUpdateStatusInputEditText.setLongClickable(true);
         // mGestureDetector = new GestureDetector(this);
+
+        initAutoCompleteTextViewAdapter();
+    }
+
+    private void initAutoCompleteTextViewAdapter() {
+        setAutoCompleteTextViewAdapter(mFTPreference.getUserList());
+    }
+
+    private void setAutoCompleteTextViewAdapter(ArrayList<String> userList) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_dropdown_item_1line, userList);
+        mUpdateStatusInputEditText.setAdapter(adapter);
+        mUpdateStatusInputEditText.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
     }
 
     private void updateStatusLengthTextView() {
@@ -332,6 +352,9 @@ public class UpdateStatusActivity extends BaseActivity implements
                 String response = baseTask.getResponse();
                 addResposeTextViewText(response);
                 Utils.log(TAG, response);
+                ArrayList<String> userList = ((GetUserTimeline) baseTask).getUserList();
+                userList = mFTPreference.storeUserList(userList);
+                setAutoCompleteTextViewAdapter(userList);
                 break;
             }
 

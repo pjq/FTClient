@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
+
 /**
  * The FTClient Preference,used to store/get userName,Password,ServerUrl,etc.
  * 
@@ -15,6 +17,7 @@ public class FTPreference {
     public static final String USER_NAME = "user_name";
     public static final String USER_PASSWORD = "password";
     public static final String SERVER_URL = "server_url";
+    public static final String USER_LIST = "user_list";
 
     private static FTPreference mInstance;
     private static Context mContext;
@@ -137,6 +140,46 @@ public class FTPreference {
         SharedPreferences preferences = PreferenceManager
                 .getDefaultSharedPreferences(mContext);
         return preferences.getString(key, defaultVal);
+    }
+
+    /**
+     * Store the user list.And return all the user list.
+     * 
+     * @param userList
+     */
+    public synchronized ArrayList<String> storeUserList(ArrayList<String> userList) {
+        ArrayList<String> currentList = getUserList();
+        for (String str : userList) {
+            if (!currentList.contains(str)) {
+                currentList.add(str);
+            }
+        }
+
+        store(USER_LIST, currentList.toString());
+        return currentList;
+    }
+
+    /**
+     * Get the user list.
+     */
+    public synchronized ArrayList<String> getUserList() {
+        ArrayList<String> userList = new ArrayList<String>();
+
+        String userStrings = restore(USER_LIST, "");
+
+        userStrings = userStrings.replace("[", "");
+        userStrings = userStrings.replace("]", "");
+        String[] user = userStrings.split(",");
+
+        for (String str : user) {
+            if (!userList.contains(str)) {
+                // Get two types.
+                userList.add(str);
+                userList.add("@" + str);
+            }
+        }
+
+        return userList;
     }
 
 }
