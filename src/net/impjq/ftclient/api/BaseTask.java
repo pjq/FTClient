@@ -31,6 +31,7 @@ public abstract class BaseTask implements Runnable {
     public static final String SERVICE_TYPE_TWITTER = "s1";
     public static final String SERVICE_TYPE_FACEBOOK = "s2";
     public static final String SERVICE_TYPE_UPLOAD_PHOTO = "s3";
+    public static final String SERVICE_TYPE_ACCOUNT= "account/web";
 
     // Twitter
     public static final int TWITTER_API_UPDATE_MESSAGE = 10;
@@ -42,6 +43,9 @@ public abstract class BaseTask implements Runnable {
 
     // PhotoUpload
     public static final int PHOTO_UPLOAD_PHOTO = FACEBOOK_API_GET_TIMELINE + 1;
+    
+    //Account
+    public static final int ACCOUNT_REGISTER = PHOTO_UPLOAD_PHOTO + 1;
 
     protected String mCommand;
 

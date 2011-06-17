@@ -14,6 +14,7 @@
 	<string name="clear_response">Clear</string>
 	<string name="get_user_timeline">GetUserTimeline</string>
 	<string name="execeed_limit_length">Exceed the max length 140.</string>
+	<string name="register">Register</string>
 
 
 	<!--UploadPhoto -->
@@ -21,4 +22,12 @@
 	<string name="capture_photo">Capture</string>
 	<string name="choose_from_local">Local File</string>
 	<string name="choose_from_local_failed">Local File Failed</string>
+
+	<!--Register -->
+	<string name="register_user_name_input">Please input user name</string>
+	<string name="register_password_input">Please input password</string>
+	<string name="register_email_input">Please input email</string>
+	<string name="register_twitter_user_name_input">Please input Twitter user name</string>
+	<string name="register_twitter_password_input">Please input Twitter password</string>
+	<string name="wrong_param">Bad parameters,Please check your input.</string>
 </resources>

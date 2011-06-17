@@ -14,6 +14,8 @@
 			android:configChanges="orientation|keyboardHidden"></activity>
 		<activity android:name="net.impjq.photo.CapturePhoto"
 			android:configChanges="orientation|keyboardHidden"></activity>
+		<activity android:name="net.impjq.ftclient.RegisterActivity"
+			android:configChanges="orientation|keyboardHidden" android:theme="@android:style/Theme.Dialog"></activity>
 	</application>
 
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>

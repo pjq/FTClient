@@ -37,6 +37,7 @@ public class UpdateStatusActivity extends BaseActivity implements
     private Button mCapturePhotoButton;
     private Button mClearInputButton;
     private TextView mStatusLengthTextView;
+    private Button mRegisterButton;
 
     private FTPreference mFTPreference;
     private String mUserName;
@@ -50,6 +51,7 @@ public class UpdateStatusActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        Utils.log(TAG, "onCreate");
 
         setContentView(R.layout.update_status_layout);
 
@@ -72,12 +74,14 @@ public class UpdateStatusActivity extends BaseActivity implements
         mCapturePhotoButton = (Button) findViewById(R.id.update_status_capture_button);
         mClearInputButton = (Button) findViewById(R.id.update_status_clear_input_button);
         mStatusLengthTextView = (TextView) findViewById(R.id.update_status_length_textview);
+        mRegisterButton = (Button) findViewById(R.id.update_status_register_button);
 
         mUpdateStatusUpdateButton.setOnClickListener(this);
         mClearResponseButton.setOnClickListener(this);
         mGetUserTimelineButton.setOnClickListener(this);
         mCapturePhotoButton.setOnClickListener(this);
         mClearInputButton.setOnClickListener(this);
+        mRegisterButton.setOnClickListener(this);
 
         mUserNameInputEditText.setText(mFTPreference.getUserName());
         mPasswordInputEditText.setText(mFTPreference.getPassword());
@@ -216,7 +220,7 @@ public class UpdateStatusActivity extends BaseActivity implements
                 getUserTimeline(mUserName, mPassword);
                 mFTPreference.storeAll(mUserName, mPassword, mServerUrl);
 
-                //asyncTaskTest(137);
+                // asyncTaskTest(137);
                 break;
             }
 
@@ -234,6 +238,15 @@ public class UpdateStatusActivity extends BaseActivity implements
                 break;
             }
 
+            case R.id.update_status_register_button: {
+                mServerUrl = mServerInputEditText.getText().toString();
+                BaseTask.setServerUrl(mServerUrl);
+                Intent intent = new Intent();
+                intent.setClass(this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+            }
+
             default:
                 break;
         }
@@ -242,7 +255,7 @@ public class UpdateStatusActivity extends BaseActivity implements
 
     protected void asyncTaskTest(int size) {
         for (int i = 0; i < size; i++) {
-            Utils.log(TAG, "execute getUserTimeline "+i);
+            Utils.log(TAG, "execute getUserTimeline " + i);
             getUserTimeline(mUserName, mPassword);
         }
     }
@@ -441,4 +454,49 @@ public class UpdateStatusActivity extends BaseActivity implements
         }
         return false;
     }
+
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+
+        Utils.log(TAG, "onStart()");
+    }
+
+    @Override
+    protected void onRestart() {
+        // TODO Auto-generated method stub
+        super.onRestart();
+        Utils.log(TAG, "onReStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+
+        Utils.log(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        Utils.log(TAG, "onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        Utils.log(TAG, "onDestroy()");
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        Utils.log(TAG, "onPause()");
+    }
+
 }
