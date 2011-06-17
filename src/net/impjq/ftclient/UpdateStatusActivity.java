@@ -151,8 +151,11 @@ public class UpdateStatusActivity extends BaseActivity implements
         // mUpdateStatusInputEditText.setOnTouchListener(this);
         // mUpdateStatusInputEditText.setLongClickable(true);
         // mGestureDetector = new GestureDetector(this);
-
+        
         initAutoCompleteTextViewAdapter();
+        
+        //When start this activity,auto get the timeline.
+        getUserTimeline();
     }
 
     private void initAutoCompleteTextViewAdapter() {
@@ -324,6 +327,15 @@ public class UpdateStatusActivity extends BaseActivity implements
         updateStatus.setMessage(message);
 
         runBaseTask(updateStatus, this);
+    }
+
+    private void getUserTimeline() {
+        mUserName = mUserNameInputEditText.getText().toString();
+        mPassword = mPasswordInputEditText.getText().toString();
+        mServerUrl = mServerInputEditText.getText().toString();
+        BaseTask.setServerUrl(mServerUrl);
+
+        getUserTimeline(mUserName, mPassword);
     }
 
     private void getUserTimeline(String userName, String password) {
