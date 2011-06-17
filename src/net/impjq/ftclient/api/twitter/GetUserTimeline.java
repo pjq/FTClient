@@ -2,12 +2,8 @@
 package net.impjq.ftclient.api.twitter;
 
 import java.io.InputStream;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +16,7 @@ import net.impjq.httpclient.HttpClientHelper;
 
 public class GetUserTimeline extends BaseTask {
     private static final String TAG = GetUserTimeline.class.getSimpleName();
-    private static ArrayList<String> mUserList = new ArrayList<String>();;
+    private ArrayList<String> mUserList = new ArrayList<String>();;
 
     public GetUserTimeline() {
         // TODO Auto-generated constructor stub
@@ -77,7 +73,7 @@ public class GetUserTimeline extends BaseTask {
         return mUserList;
     }
 
-    public static ArrayList<String> getUserList() {
+    public ArrayList<String> getUserList() {
         return mUserList;
     }
 }

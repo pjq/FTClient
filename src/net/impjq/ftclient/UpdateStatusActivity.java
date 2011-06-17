@@ -18,11 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.MultiAutoCompleteTextView.Tokenizer;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -314,6 +312,12 @@ public class UpdateStatusActivity extends BaseActivity implements
     }
 
     private void updateStatus(String userName, String password, String message) {
+        // If the input is empty,just return.
+        if (Utils.isEmpty(userName) || Utils.isEmpty(password) || Utils.isEmpty(message)) {
+            showToast(getString(R.string.wrong_param));
+            return;
+        }
+
         net.impjq.ftclient.api.twitter.UpdateStatus updateStatus = new net.impjq.ftclient.api.twitter.UpdateStatus();
         updateStatus.setUserName(userName);
         updateStatus.setPassword(password);
@@ -354,13 +358,23 @@ public class UpdateStatusActivity extends BaseActivity implements
                 Utils.log(TAG, response);
                 ArrayList<String> userList = ((GetUserTimeline) baseTask).getUserList();
                 userList = mFTPreference.storeUserList(userList);
-                setAutoCompleteTextViewAdapter(userList);
+                setAutoCompleteTextViewAdapter(addAT(userList));
                 break;
             }
 
             default:
                 break;
         }
+    }
+
+    private ArrayList<String> addAT(ArrayList<String> arrayList) {
+        ArrayList<String> list = new ArrayList<String>();
+        for (String str : arrayList) {
+            list.add(str);
+            list.add("@" + str);
+        }
+
+        return list;
     }
 
     private void addResposeTextViewText(String response) {
