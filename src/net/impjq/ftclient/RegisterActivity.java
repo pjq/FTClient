@@ -5,6 +5,7 @@ import net.impjq.ftclient.account.Register;
 import net.impjq.ftclient.api.BaseTask;
 import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,9 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
     private Button mRegisterButton;
     private ProgressBar mProgressBar;
     private TextView mResponseTextView;
+
+    private String mUserName;
+    private String mPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
         mPasswordInputEditText = (EditText) findViewById(R.id.register_password_input_edittext);
         mEmailInputEditText = (EditText) findViewById(R.id.register_email_input_edittext);
         mTwitterPasswordInputEditText = (EditText) findViewById(R.id.register_twitter_password_input_edittext);
-        mTwitterUserNameInputEditText = (EditText) findViewById(R.id.register_username_input_edittext);
+        mTwitterUserNameInputEditText = (EditText) findViewById(R.id.register_twitter_username_input_edittext);
         mRegisterButton = (Button) findViewById(R.id.register_button);
         mProgressBar = (ProgressBar) findViewById(R.id.register_progress_bar);
         mResponseTextView = (TextView) findViewById(R.id.register_response_textview);
@@ -93,9 +97,14 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
 
         mProgressBar.setVisibility(View.GONE);
         mRegisterButton.setEnabled(true);
-
-        if (response.contains("success")) {
-            showToast(response);
+  
+        if (!Utils.isEmpty(response)&&response.contains("success")) {
+            showToast(getString(R.string.register_success));
+            FTPreference.getInstance(getApplicationContext()).storeAll(mUserName, mPassword,
+                    null);
+            Intent intent = new Intent();
+            intent.setClass(this, UpdateStatusActivity.class);
+            setResult(RESULT_OK, intent);
             finish();
         } else {
             // showToast(response);
@@ -110,17 +119,17 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
 
         switch (id) {
             case R.id.register_button: {
-                String userName = mUserNameInputEditText.getText().toString();
-                String password = mPasswordInputEditText.getText().toString();
+                mUserName = mUserNameInputEditText.getText().toString();
+                mPassword = mPasswordInputEditText.getText().toString();
                 String email = mEmailInputEditText.getText().toString();
                 String twitterUserName = mTwitterUserNameInputEditText.getText().toString();
                 String twitterPassword = mTwitterPasswordInputEditText.getText().toString();
 
-                if (Utils.isEmpty(userName) || Utils.isEmpty(password)
+                if (Utils.isEmpty(mPassword) || Utils.isEmpty(mPassword)
                         || Utils.isEmpty(twitterPassword) || Utils.isEmpty(twitterUserName)) {
                     showToast(getString(R.string.wrong_param));
                 } else {
-                    register(userName, password, email, twitterUserName, twitterPassword);
+                    register(mUserName, mPassword, email, twitterUserName, twitterPassword);
                 }
 
                 break;

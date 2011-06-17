@@ -228,7 +228,7 @@ public class UpdateStatusActivity extends BaseActivity implements
                 Intent intent = new Intent();
                 intent.setClass(this, CapturePhoto.class);
                 startActivityForResult(intent,
-                        CapturePhoto.REQUEST_CODE_CAPTURE_PHOTO);
+                        REQUEST_CODE_CAPTURE_PHOTO);
 
                 break;
             }
@@ -243,7 +243,7 @@ public class UpdateStatusActivity extends BaseActivity implements
                 BaseTask.setServerUrl(mServerUrl);
                 Intent intent = new Intent();
                 intent.setClass(this, RegisterActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_REGISTER);
                 break;
             }
 
@@ -260,19 +260,31 @@ public class UpdateStatusActivity extends BaseActivity implements
         }
     }
 
+    public static final int REQUEST_CODE_REGISTER = 1001;
+    public static final int REQUEST_CODE_CAPTURE_PHOTO = 10;
+    public static final int REQUEST_CODE_GALLERY = REQUEST_CODE_CAPTURE_PHOTO + 1;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         // super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case CapturePhoto.REQUEST_CODE_CAPTURE_PHOTO: {
+            case REQUEST_CODE_CAPTURE_PHOTO: {
                 if (resultCode == RESULT_OK && null != data) {
                     String result = data
                             .getStringExtra(CapturePhoto.REQUEST_EXTRAL_URL);
                     mUpdateStatusInputEditText.append(result);
                 }
 
+                break;
+            }
+
+            case REQUEST_CODE_REGISTER: {
+                if (resultCode == RESULT_OK && null != data) {
+                    mUserNameInputEditText.setText(mFTPreference.getUserName());
+                    mPasswordInputEditText.setText(mFTPreference.getPassword());
+                }
                 break;
             }
 

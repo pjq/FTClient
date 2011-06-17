@@ -32,8 +32,7 @@ import net.impjq.ftclient.api.BaseAsyncTask.TaskListener;
 
 public class CapturePhoto extends BaseActivity implements TaskListener,
         OnClickListener {
-    public static final int REQUEST_CODE_CAPTURE_PHOTO = 10;
-    public static final int REQUEST_CODE_GALLERY = REQUEST_CODE_CAPTURE_PHOTO + 1;
+
     public static final String REQUEST_EXTRAL_URL = "url";
 
     /**
@@ -108,12 +107,12 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 1024);
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-        startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
+        startActivityForResult(intent, UpdateStatusActivity.REQUEST_CODE_CAPTURE_PHOTO);
     }
 
     protected void capturePhotoUpload() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CODE_CAPTURE_PHOTO);
+        startActivityForResult(intent, UpdateStatusActivity.REQUEST_CODE_CAPTURE_PHOTO);
     }
 
     protected boolean storePhoto(Bitmap bitmap, String filePath) {
@@ -186,7 +185,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         }
 
         switch (requestCode) {
-            case REQUEST_CODE_CAPTURE_PHOTO: {
+            case UpdateStatusActivity.REQUEST_CODE_CAPTURE_PHOTO: {
                 if (resultCode == RESULT_OK && null != extras) {// Has extras
                     Bitmap b = (Bitmap) extras.get("data");
                     // b=resizeBitmap(b, 72, 72);
@@ -213,7 +212,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
                 break;
             }
 
-            case REQUEST_CODE_GALLERY: {
+            case UpdateStatusActivity.REQUEST_CODE_GALLERY: {
                 mBitmap = null;
 
                 if (resultCode == RESULT_OK && null != extras) {
@@ -333,7 +332,7 @@ public class CapturePhoto extends BaseActivity implements TaskListener,
         try {
             // Launch picker to choose photo for selected contact
             final Intent intent = getPhotoPickIntent();
-            startActivityForResult(intent, REQUEST_CODE_GALLERY);
+            startActivityForResult(intent, UpdateStatusActivity.REQUEST_CODE_GALLERY);
         } catch (ActivityNotFoundException e) {
             showToast(getString(R.string.choose_from_local_failed));
         }

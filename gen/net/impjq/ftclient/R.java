@@ -52,33 +52,35 @@ public final class R {
         public static final int twitter=0x7f020004;
     }
     public static final class id {
-        public static final int get_user_timeline_button=0x7f080012;
-        public static final int register_button=0x7f080005;
-        public static final int register_email_input_edittext=0x7f080003;
-        public static final int register_password_input_edittext=0x7f080002;
-        public static final int register_progress_bar=0x7f080006;
-        public static final int register_response_textview=0x7f080007;
-        public static final int register_twitter_password_input_edittext=0x7f080004;
-        public static final int register_username_input_edittext=0x7f080001;
+        public static final int ScrollView01=0x7f080001;
+        public static final int get_user_timeline_button=0x7f080014;
+        public static final int register_button=0x7f080007;
+        public static final int register_email_input_edittext=0x7f080004;
+        public static final int register_password_input_edittext=0x7f080003;
+        public static final int register_progress_bar=0x7f080008;
+        public static final int register_response_textview=0x7f080009;
+        public static final int register_twitter_password_input_edittext=0x7f080006;
+        public static final int register_twitter_username_input_edittext=0x7f080005;
+        public static final int register_username_input_edittext=0x7f080002;
         public static final int update_status_button=0x7f080000;
-        public static final int update_status_capture_button=0x7f08000f;
-        public static final int update_status_clear_input_button=0x7f08000d;
-        public static final int update_status_clear_response_button=0x7f080013;
-        public static final int update_status_input_edittext=0x7f08000c;
-        public static final int update_status_length_textview=0x7f08000e;
-        public static final int update_status_password_input_edittext=0x7f08000a;
-        public static final int update_status_progressbar=0x7f080011;
-        public static final int update_status_register_button=0x7f080008;
-        public static final int update_status_response_textview=0x7f080014;
-        public static final int update_status_server_input_edittext=0x7f08000b;
-        public static final int update_status_update_button=0x7f080010;
-        public static final int update_status_username_input_edittext=0x7f080009;
-        public static final int upload_photo_capture_photo_button=0x7f080015;
-        public static final int upload_photo_choose_from_local_button=0x7f080016;
-        public static final int upload_photo_info_textview=0x7f080018;
-        public static final int upload_photo_preview_imageview=0x7f080017;
-        public static final int upload_photo_progressbar=0x7f08001a;
-        public static final int upload_photo_upload_button=0x7f080019;
+        public static final int update_status_capture_button=0x7f080011;
+        public static final int update_status_clear_input_button=0x7f08000f;
+        public static final int update_status_clear_response_button=0x7f080015;
+        public static final int update_status_input_edittext=0x7f08000e;
+        public static final int update_status_length_textview=0x7f080010;
+        public static final int update_status_password_input_edittext=0x7f08000c;
+        public static final int update_status_progressbar=0x7f080013;
+        public static final int update_status_register_button=0x7f08000a;
+        public static final int update_status_response_textview=0x7f080016;
+        public static final int update_status_server_input_edittext=0x7f08000d;
+        public static final int update_status_update_button=0x7f080012;
+        public static final int update_status_username_input_edittext=0x7f08000b;
+        public static final int upload_photo_capture_photo_button=0x7f080017;
+        public static final int upload_photo_choose_from_local_button=0x7f080018;
+        public static final int upload_photo_info_textview=0x7f08001a;
+        public static final int upload_photo_preview_imageview=0x7f080019;
+        public static final int upload_photo_progressbar=0x7f08001c;
+        public static final int upload_photo_upload_button=0x7f08001b;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -104,6 +106,7 @@ public final class R {
         public static final int register=0x7f06000c;
         public static final int register_email_input=0x7f060013;
         public static final int register_password_input=0x7f060012;
+        public static final int register_success=0x7f060017;
         public static final int register_twitter_password_input=0x7f060015;
         public static final int register_twitter_user_name_input=0x7f060014;
         /** Register 
