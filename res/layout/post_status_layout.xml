@@ -29,23 +29,11 @@
                     android:id="@+id/update_status_input_edittext"
                     style="@style/CommonEditTextStyle"
                     android:layout_width="fill_parent"
-                    android:layout_height="100dip"
+                    android:layout_height="150dip"
                     android:layout_weight="1.0"
                     android:gravity="top"
                     android:hint="@string/update_status_hint" >
                 </MultiAutoCompleteTextView>
-
-                <Button
-                    android:id="@+id/update_status_clear_input_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="0"
-                    android:background="@drawable/ic_delete"
-                    android:paddingRight="5dip"
-                    android:paddingTop="5dip"
-                    android:visibility="gone" >
-                </Button>
 
                 <TextView
                     android:id="@+id/update_status_length_textview"
@@ -57,15 +45,33 @@
                 </TextView>
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/update_status_capture_button"
+            <RelativeLayout
                 android:layout_width="40dip"
-                android:layout_height="40dip"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:background="@drawable/camera" >
-            </Button>
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:paddingTop="15dip"
+                android:paddingBottom="15dip" >
+
+                <Button
+                    android:id="@+id/update_status_capture_button"
+                    android:layout_width="40dip"
+                    android:layout_height="40dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/camera" >
+                </Button>
+
+                <Button
+                    android:id="@+id/update_status_clear_input_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/ic_delete"
+                    android:paddingRight="5dip"
+                    android:paddingTop="5dip"
+                    android:visibility="gone" >
+                </Button>
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
