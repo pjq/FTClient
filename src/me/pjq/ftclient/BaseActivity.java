@@ -26,9 +26,9 @@ import me.pjq.ftclient.api.BaseTask;
  */
 public class BaseActivity extends Activity implements TaskListener {
     public static final int DEFAULT_TOAST_SHOW_DURATION = 1000;
-    protected String mUserName;
-    protected String mPassword;
-    protected String mServerUrl;
+    protected static String mUserName;
+    protected static String mPassword;
+    protected static String mServerUrl;
     protected FTPreference mFTPreference;
     protected Context mContext;
 
