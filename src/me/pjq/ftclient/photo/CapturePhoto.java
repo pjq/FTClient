@@ -62,7 +62,18 @@ public class CapturePhoto extends BaseActivity implements
         init();
 
         capturePhotoUpload();
+        initTitleBar();
         // capturePhotoToLocal();
+    }
+
+    @Override
+    protected boolean enableTitleBarLeftView() {
+        return true;
+    }
+
+    @Override
+    protected void onTitleBarLeftViewClicked() {
+        returnResult();
     }
 
     private void init() {

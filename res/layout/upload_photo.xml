@@ -1,33 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_weight="0">
-		<Button android:text="@string/capture_photo" android:id="@+id/upload_photo_capture_photo_button"
-			android:layout_width="0dip" android:layout_height="wrap_content"
-			android:layout_weight="1.0"></Button>
-		<Button android:text="@string/choose_from_local"
-			android:id="@+id/upload_photo_choose_from_local_button"
-			android:layout_width="0dip" android:layout_height="wrap_content"
-			android:layout_weight="1.0"></Button>
-	</LinearLayout>
+    <include
+        android:id="@+id/list_titlebar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/common_titlebar" />
 
-	<ImageView android:id="@+id/upload_photo_preview_imageview"
-		android:layout_width="fill_parent" android:layout_height="0dip"
-		android:layout_weight="1.0" android:layout_gravity="center"
-		android:scaleType="fitCenter"></ImageView>
-	<TextView android:id="@+id/upload_photo_info_textview"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:gravity="center_horizontal"></TextView>
-	<LinearLayout android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<Button android:text="@string/upload_photo" android:id="@+id/upload_photo_upload_button"
-			android:layout_width="0dip" android:layout_height="wrap_content"
-			android:layout_weight="1.0"></Button>
-		<ProgressBar android:id="@+id/upload_photo_progressbar"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:visibility="gone"></ProgressBar>
-	</LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" >
+
+        <Button
+            android:id="@+id/upload_photo_capture_photo_button"
+            style="@style/CommonButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/capture_photo" >
+        </Button>
+
+        <Button
+            android:id="@+id/upload_photo_choose_from_local_button"
+            style="@style/CommonButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/choose_from_local" >
+        </Button>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/upload_photo_preview_imageview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_gravity="center"
+        android:layout_weight="1.0"
+        android:scaleType="fitCenter" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/upload_photo_info_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/upload_photo_upload_button"
+            style="@style/CommonButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="@string/post_status" />
+
+        <ProgressBar
+            android:id="@+id/upload_photo_progressbar"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="right"
+            android:indeterminateDrawable="@drawable/bg_progress_loading"
+            android:padding="5dip"
+            android:visibility="gone" >
+        </ProgressBar>
+    </LinearLayout>
+
 </LinearLayout>

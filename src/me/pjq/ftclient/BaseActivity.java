@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,10 +32,14 @@ public class BaseActivity extends Activity implements TaskListener {
     protected FTPreference mFTPreference;
     protected Context mContext;
 
+    private View mTitleBarLeftView;
+    private Button mTitleBarRightButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         setTheme(R.style.FTClienttheme);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         mContext = getApplicationContext();
 
@@ -42,6 +48,50 @@ public class BaseActivity extends Activity implements TaskListener {
         mPassword = mFTPreference.getPassword();
         mServerUrl = mFTPreference.getServerUrl();
         BaseTask.setServerUrl(mServerUrl);
+    }
+
+    protected void initTitleBar() {
+
+        mTitleBarLeftView = (View) findViewById(R.id.common_titlebar_left_layout);
+        mTitleBarRightButton = (Button) findViewById(R.id.common_titlebar_right_button);
+
+        if (enableTitleBarLeftView()) {
+            if (null != mTitleBarLeftView) {
+                mTitleBarLeftView.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if (null != mTitleBarLeftView) {
+            mTitleBarLeftView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onTitleBarLeftViewClicked();
+                }
+            });
+        }
+
+        if (null != mTitleBarRightButton) {
+            mTitleBarRightButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    onTitleBarRightViewClicked();
+                }
+            });
+        }
+    }
+
+    protected boolean enableTitleBarLeftView() {
+        return false;
+    }
+
+    protected void onTitleBarLeftViewClicked() {
+
+    }
+
+    protected void onTitleBarRightViewClicked() {
+
     }
 
     protected void runBaseTask(BaseTask baseTask) {

@@ -11,7 +11,7 @@ public class AboutActivity extends WebViewActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String url = "http://pjq.me";
+        String url = "http://pjq.me/wap";
         loadurl(url);
     }
 }

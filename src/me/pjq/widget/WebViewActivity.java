@@ -5,6 +5,7 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,11 +21,9 @@ import me.pjq.ftclient.BaseActivity;
 import me.pjq.ftclient.R;
 
 public class WebViewActivity extends BaseActivity {
-    public final static String TAG = "PageWebView";
+    public final static String TAG = WebViewActivity.class.getSimpleName();
     public final static String INTENT_EXTRA_URL = "intent_extra_webview_url";
 
-    // private ProgressBar m_tvEmptyProgress;
-    // private TextView m_tvCommonTitle;
     private WebView mWebView;
     private WebSettings webSettings;
     private Handler handler;
@@ -34,7 +33,7 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.webview);
 
         Bundle bundle = getIntent().getExtras();
@@ -119,6 +118,9 @@ public class WebViewActivity extends BaseActivity {
     }
 
     public void loadurl(final WebView view, final String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
 
         runOnUiThread(new Runnable() {
 
@@ -132,6 +134,9 @@ public class WebViewActivity extends BaseActivity {
     }
 
     public void loadurl(final String url) {
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
 
         runOnUiThread(new Runnable() {
 

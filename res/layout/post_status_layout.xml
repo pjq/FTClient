@@ -27,6 +27,7 @@
 
                 <MultiAutoCompleteTextView
                     android:id="@+id/update_status_input_edittext"
+                    style="@style/CommonEditTextStyle"
                     android:layout_width="fill_parent"
                     android:layout_height="100dip"
                     android:layout_weight="1.0"

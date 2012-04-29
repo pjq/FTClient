@@ -1,7 +1,6 @@
 
 package me.pjq.ftclient;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,17 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import me.pjq.ftclient.api.BaseAsyncTask.TaskListener;
 import me.pjq.ftclient.api.BaseTask;
 import me.pjq.ftclient.api.twitter.GetUserTimeline;
-import me.pjq.ftclient.photo.CapturePhoto;
 
 import java.util.ArrayList;
 
@@ -30,26 +25,16 @@ public class HomeTimelineActivity extends BaseActivity implements
         OnClickListener, TaskListener, OnTouchListener, OnGestureListener {
     public static final String TAG = HomeTimelineActivity.class.getSimpleName();
 
-    // private EditText mServerInputEditText;
-    // private MultiAutoCompleteTextView mUpdateStatusInputEditText;
-    // private Button mUpdateStatusUpdateButton;
     private ProgressBar mUpdateStatusProgressBar;
     private TextView mUpdateStatusResponseTextView;
-    // private EditText mUserNameInputEditText;
-    // private EditText mPasswordInputEditText;
     private Button mClearResponseButton;
     private Button mGetUserTimelineButton;
-    // private Button mCapturePhotoButton;
-    // private Button mClearInputButton;
-    // private TextView mStatusLengthTextView;
-    // private Button mRegisterButton;
-
+    
     // GestureDetector
     private GestureDetector mGestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Utils.log(TAG, "onCreate");
 
@@ -71,20 +56,17 @@ public class HomeTimelineActivity extends BaseActivity implements
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
                     int count) {
-                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                     int after) {
-                // TODO Auto-generated method stub
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
 
                 setClearButtonVisible();
 
@@ -108,7 +90,6 @@ public class HomeTimelineActivity extends BaseActivity implements
 
     @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
 
         int id = v.getId();
 
@@ -119,8 +100,9 @@ public class HomeTimelineActivity extends BaseActivity implements
             }
 
             case R.id.get_user_timeline_button: {
-                mUpdateStatusResponseTextView
-                        .setText(getString(R.string.get_user_timeline));
+                // mUpdateStatusResponseTextView
+                // .setText(getString(R.string.get_user_timeline));
+                mUpdateStatusResponseTextView.setText(getString(R.string.please_wait));
 
                 getUserTimeline(mUserName, mPassword);
 
@@ -265,27 +247,23 @@ public class HomeTimelineActivity extends BaseActivity implements
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        // TODO Auto-generated method stub
         // showToast("onTouch");
         return mGestureDetector.onTouchEvent(event);
     }
 
     @Override
     public boolean onDown(MotionEvent e) {
-        // TODO Auto-generated method stub
         // showToast("onDown");
         return false;
     }
 
     @Override
     public void onShowPress(MotionEvent e) {
-        // TODO Auto-generated method stub
         showToast("onShowPress");
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
-        // TODO Auto-generated method stub
         showToast("onSingleTapUp");
         return false;
     }
@@ -293,21 +271,18 @@ public class HomeTimelineActivity extends BaseActivity implements
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
             float distanceY) {
-        // TODO Auto-generated method stub
         showToast("onScroll");
         return false;
     }
 
     @Override
     public void onLongPress(MotionEvent e) {
-        // TODO Auto-generated method stub
         showToast("onLongPress");
     }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
             float velocityY) {
-        // TODO Auto-generated method stub
 
         showToast("onFling");
         if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
@@ -328,7 +303,6 @@ public class HomeTimelineActivity extends BaseActivity implements
 
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
 
         Utils.log(TAG, "onStart()");
@@ -336,14 +310,12 @@ public class HomeTimelineActivity extends BaseActivity implements
 
     @Override
     protected void onRestart() {
-        // TODO Auto-generated method stub
         super.onRestart();
         Utils.log(TAG, "onReStart()");
     }
 
     @Override
     protected void onResume() {
-        // TODO Auto-generated method stub
         super.onResume();
 
         Utils.log(TAG, "onResume()");
@@ -351,21 +323,18 @@ public class HomeTimelineActivity extends BaseActivity implements
 
     @Override
     protected void onStop() {
-        // TODO Auto-generated method stub
         super.onStop();
         Utils.log(TAG, "onStop()");
     }
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
         Utils.log(TAG, "onDestroy()");
     }
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
         super.onPause();
         Utils.log(TAG, "onPause()");
     }

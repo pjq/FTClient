@@ -12,6 +12,7 @@
 
         <EditText
             android:id="@+id/update_status_username_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_username"
@@ -20,6 +21,7 @@
 
         <EditText
             android:id="@+id/update_status_password_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_password"
@@ -29,6 +31,7 @@
 
         <EditText
             android:id="@+id/update_status_server_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_server"
@@ -44,10 +47,10 @@
 
             <Button
                 android:id="@+id/settings_check_button"
+                style="@style/CommonButtonStyle"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-               style="@style/CommonButtonStyle"
                 android:text="@string/check_settings" />
 
             <ProgressBar

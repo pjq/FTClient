@@ -11,6 +11,7 @@
 
         <EditText
             android:id="@+id/register_username_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_user_name_input"
@@ -19,6 +20,7 @@
 
         <EditText
             android:id="@+id/register_password_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_password_input"
@@ -28,6 +30,7 @@
 
         <EditText
             android:id="@+id/register_email_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_email_input"
@@ -36,6 +39,7 @@
 
         <EditText
             android:id="@+id/register_twitter_username_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_twitter_user_name_input"
@@ -44,6 +48,7 @@
 
         <EditText
             android:id="@+id/register_twitter_password_input_edittext"
+            style="@style/CommonEditTextStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/register_twitter_password_input"

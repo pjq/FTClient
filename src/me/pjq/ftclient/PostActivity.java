@@ -4,6 +4,7 @@ package me.pjq.ftclient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -217,7 +218,9 @@ public class PostActivity extends BaseActivity implements OnClickListener {
                 if (resultCode == RESULT_OK && null != data) {
                     String result = data
                             .getStringExtra(CapturePhoto.REQUEST_EXTRAL_URL);
-                    mUpdateStatusInputEditText.append(result);
+                    if (!TextUtils.isEmpty(result)) {
+                        mUpdateStatusInputEditText.append(result);
+                    }
                 }
 
                 break;
