@@ -38,8 +38,9 @@
     <string name="tab_about">About</string>
     <string name="tab_post">Post</string>
     <string name="tab_register">Register</string>
-    <string name="check_settings">Check Setting</string>
+    <string name="check_settings">Save</string>
     <string name="post_status">Post</string>
+    <string name="store_your_settings">Your settings are saved succesfully.</string>
     <string name="please_wait">Please wait,it is fucking the GFW.\nAcross the Great Wall, we can reach every corner in the world.\n......</string>
 
 </resources>

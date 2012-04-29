@@ -60,6 +60,7 @@ public class SettingsActivity extends BaseActivity implements
                 mServerUrl = mServerInputEditText.getText().toString();
 
                 mFTPreference.storeAll(mUserName, mPassword, mServerUrl);
+                showToast(getString(R.string.store_your_settings));
                 break;
             }
 
