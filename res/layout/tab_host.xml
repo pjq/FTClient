@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_color_grey"
+    android:orientation="vertical" >
+
+    <me.pjq.widget.AnimationTabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/list_titlebar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/common_titlebar" />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.0"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="3dip"
+                android:paddingTop="5dip" >
+
+                <!--
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="10dip"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/cover_btn1"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn2"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn3"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn4"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+                </LinearLayout>
+                -->
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/tab1"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="28dip"
+                            android:layout_height="28dip"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/Tab_Text_Small"
+                            android:text="@string/tab_hometimeline" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/ic_vertical_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="28dip"
+                            android:layout_height="28dip"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/Tab_Text_Small"
+                            android:text="@string/tab_post" />
+                    </LinearLayout>
+                    
+                         <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/ic_vertical_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/tab3"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="28dip"
+                            android:layout_height="28dip"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/Tab_Text_Small"
+                            android:text="@string/tab_settings" />
+                    </LinearLayout>
+                    
+                         <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/ic_vertical_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/tab4"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="28dip"
+                            android:layout_height="28dip"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/Tab_Text_Small"
+                            android:text="@string/tab_register" />
+                    </LinearLayout>
+                    
+                         <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/ic_vertical_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/tab5"
+                        android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="28dip"
+                            android:layout_height="28dip"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/Tab_Text_Small"
+                            android:text="@string/tab_about" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="8dip"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:id="@+id/cover_btn1"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn2"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn3"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn4"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/cover_btn5"
+                        style="@style/Tab_Cover_Btn"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" />
+        </LinearLayout>
+    </me.pjq.widget.AnimationTabHost>
+
+</LinearLayout>

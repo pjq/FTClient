@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dip"
+        android:scrollbars="vertical" >
+
+        <TextView
+            android:id="@+id/update_status_response_textview"
+            style="@style/ResponseTextViewStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:autoLink="all"
+            android:linksClickable="true" >
+        </TextView>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_weight="0"
+        android:background="@color/blackgrey" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:layout_weight="0"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/get_user_timeline_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@drawable/selector_blue_btn_mid"
+            android:text="@string/get_user_timeline" >
+        </Button>
+
+        <Button
+            android:id="@+id/update_status_clear_response_button"
+            style="@style/CommonButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/clear_response" >
+        </Button>
+
+        <ProgressBar
+            android:id="@+id/update_status_progressbar"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="right"
+            android:indeterminateDrawable="@drawable/bg_progress_loading"
+            android:padding="5dip"
+            android:visibility="gone" >
+        </ProgressBar>
+    </LinearLayout>
+
+</LinearLayout>

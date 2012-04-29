@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<LinearLayout android:id="@+id/ScrollView01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical">
+		<EditText android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:hint="@string/register_user_name_input"
+			android:id="@+id/register_username_input_edittext"
+			android:singleLine="true"></EditText>
+		<EditText android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:hint="@string/register_password_input"
+			android:id="@+id/register_password_input_edittext" android:inputType="textPassword"
+			android:singleLine="true"></EditText>
+		<EditText android:hint="@string/register_email_input"
+			android:id="@+id/register_email_input_edittext" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:singleLine="true"></EditText>
+		<EditText android:hint="@string/register_twitter_user_name_input"
+			android:id="@+id/register_twitter_username_input_edittext"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:singleLine="true"></EditText>
+		<EditText android:hint="@string/register_twitter_password_input"
+			android:id="@+id/register_twitter_password_input_edittext"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:singleLine="true" android:inputType="textPassword"></EditText>
+		<Button android:hint="@string/register" android:id="@+id/register_button"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:gravity="center">
+			<ProgressBar android:id="@+id/register_progress_bar"
+				android:layout_width="40dip" android:layout_height="40dip"
+				android:visibility="gone"></ProgressBar>
+			<TextView android:id="@+id/register_response_textview"
+				android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
+		</RelativeLayout>
+	</LinearLayout>
+</ScrollView>

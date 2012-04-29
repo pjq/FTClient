@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/bg_title_bar"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <RelativeLayout
+            android:id="@+id/common_titlebar_left_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/common_titlebar_left"
+                style="@style/TextViewStyleCommonBarLeftButton"
+                android:layout_width="65dp"
+                android:layout_height="42dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="-5dp"
+                android:gravity="center"
+                android:text="@string/back"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_toRightOf="@+id/common_titlebar_left"
+                android:background="@drawable/ic_top_divider" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/common_titlebar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextViewStyleCommonTitle" />
+
+        <TextView
+            android:id="@+id/common_titlebar_right_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_refresh"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:id="@+id/title_bar_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/common_titlebar_right_textview"
+            android:background="@drawable/ic_top_divider"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/common_titlebar_progressbar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:indeterminateDrawable="@drawable/bg_progress_loading"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</LinearLayout>

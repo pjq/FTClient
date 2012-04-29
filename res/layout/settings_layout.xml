@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/update_status_username_input_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_username"
+            android:singleLine="true" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/update_status_password_input_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_password"
+            android:inputType="textPassword"
+            android:singleLine="true" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/update_status_server_input_edittext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_server"
+            android:singleLine="true"
+            android:text="@string/default_server_url" >
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/settings_check_button"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+               style="@style/CommonButtonStyle"
+                android:text="@string/check_settings" />
+
+            <ProgressBar
+                android:id="@+id/update_status_progressbar"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="right"
+                android:indeterminateDrawable="@drawable/bg_progress_loading"
+                android:padding="5dip"
+                android:visibility="gone" >
+            </ProgressBar>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:scrollbars="vertical" >
+
+            <TextView
+                android:id="@+id/update_status_response_textview"
+                style="@style/ResponseTextViewStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:autoLink="all"
+                android:linksClickable="true" >
+            </TextView>
+        </ScrollView>
+    </LinearLayout>
+
+</ScrollView>
