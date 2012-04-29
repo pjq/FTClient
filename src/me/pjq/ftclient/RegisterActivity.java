@@ -31,7 +31,6 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.register_layout);
@@ -48,7 +47,6 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
     }
 
     private void init() {
-        // TODO Auto-generated method stub
         mUserNameInputEditText = (EditText) findViewById(R.id.register_username_input_edittext);
         mPasswordInputEditText = (EditText) findViewById(R.id.register_password_input_edittext);
         mEmailInputEditText = (EditText) findViewById(R.id.register_email_input_edittext);
@@ -76,7 +74,6 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
 
     @Override
     public void onTaskStart(Object task) {
-        // TODO Auto-generated method stub
 
         mProgressBar.setVisibility(View.VISIBLE);
         mRegisterButton.setEnabled(false);
@@ -85,27 +82,25 @@ public class RegisterActivity extends BaseActivity implements TaskListener, OnCl
 
     @Override
     public void onTaskProgressUpdate(Object task, Integer... values) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void OnTaskFinished(Object task) {
-        // TODO Auto-generated method stub
         BaseTask baseTask = (BaseTask) task;
         String response = baseTask.getResponse();
 
         mProgressBar.setVisibility(View.GONE);
         mRegisterButton.setEnabled(true);
-  
-        if (!Utils.isEmpty(response)&&response.contains("success")) {
+
+        if (!Utils.isEmpty(response) && response.contains("success")) {
             showToast(getString(R.string.register_success));
             FTPreference.getInstance(getApplicationContext()).storeAll(mUserName, mPassword,
                     null);
             Intent intent = new Intent();
             intent.setClass(this, HomeTimelineActivity.class);
             setResult(RESULT_OK, intent);
-            finish();
+            // finish();
         } else {
             // showToast(response);
         }

@@ -56,25 +56,35 @@
             android:singleLine="true" >
         </EditText>
 
-        <Button
-            android:id="@+id/register_button"
-            style="@style/CommonButtonStyle"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register" >
-        </Button>
+            android:layout_height="45dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+            <Button
+                android:id="@+id/register_button"
+                style="@style/CommonButtonStyle"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:text="@string/register" />
 
             <ProgressBar
                 android:id="@+id/register_progress_bar"
                 android:layout_width="40dip"
                 android:layout_height="40dip"
+                android:layout_gravity="right"
+                android:indeterminateDrawable="@drawable/bg_progress_loading"
+                android:padding="5dip"
                 android:visibility="gone" >
             </ProgressBar>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
 
             <TextView
                 android:id="@+id/register_response_textview"
