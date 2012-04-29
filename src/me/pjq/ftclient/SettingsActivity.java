@@ -46,6 +46,16 @@ public class SettingsActivity extends BaseActivity implements
         hideSoftKeyboard();
 
     }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        
+        mUserName=mFTPreference.getUserName();
+        mPassword=mFTPreference.getPassword();
+        mUserNameInputEditText.setText(mUserName);
+        mPasswordInputEditText.setText(mPassword);
+    }
 
     @Override
     public void onClick(View v) {
