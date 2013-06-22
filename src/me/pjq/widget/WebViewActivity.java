@@ -83,6 +83,12 @@ public class WebViewActivity extends BaseActivity {
                     SslErrorHandler handler, SslError error) {
                 handler.proceed();
             }
+            
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+            }
         });
 
         // Enable JavaScript Alerts
